@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **Composer Package Readiness**: Feature integrates with codryn/phpcalendar package structure
+- [ ] **PSR-12 Compliance**: All code will adhere to PSR-12 Extended Coding Style
+- [ ] **TDD Approach**: Acceptance tests defined first, implementation follows test-first methodology
+- [ ] **Static Analysis**: PHPStan/Psalm strict level compatibility verified
+- [ ] **Type Safety**: All code uses strict_types=1 and comprehensive type declarations
+- [ ] **Test Coverage**: PHPUnit tests will provide comprehensive coverage
+- [ ] **Documentation**: User-facing documentation requirements identified
 
 ## Project Structure
 

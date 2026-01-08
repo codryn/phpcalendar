@@ -1,50 +1,167 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+═══════════════════════════════════════════════════════════════════════════
+SYNC IMPACT REPORT
+═══════════════════════════════════════════════════════════════════════════
+Version: (new) → 1.0.0
+Change Type: Initial constitution ratification
+
+Principles Added:
+- I. Professional Composer Package Distribution
+- II. PSR-12 Extended Coding Style (NON-NEGOTIABLE)
+- III. Test-Driven Development (NON-NEGOTIABLE)
+- IV. Static Analysis & Type Safety
+- V. Code Review & Compliance Verification
+- VI. Automated CI/CD Pipeline
+- VII. Open Source Distribution Standards
+
+Templates Status:
+✅ plan-template.md - Constitution Check section will enforce new gates
+✅ spec-template.md - Acceptance scenarios align with TDD requirements
+✅ tasks-template.md - Task structure supports TDD and CI requirements
+
+Follow-up Actions:
+- None - all placeholders filled
+
+Commit Message: docs: ratify phpcalendar constitution v1.0.0 (composer package + TDD + PSR-12 compliance)
+═══════════════════════════════════════════════════════════════════════════
+-->
+
+# PHPCalendar Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Professional Composer Package Distribution
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+PHPCalendar MUST be developed and distributed as a professionally maintained Composer package under the namespace `codryn/phpcalendar`.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rationale**: Professional package distribution ensures accessibility, version management, and integration with the PHP ecosystem. This principle establishes PHPCalendar as a reusable component rather than an application-specific library.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Requirements**:
+- Package MUST be registered on packagist.org
+- Package metadata (composer.json) MUST be accurate and complete at all times
+- Version updates MUST be automatically synchronized with Packagist
+- Package MUST follow Composer best practices for autoloading and dependency management
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. PSR-12 Extended Coding Style (NON-NEGOTIABLE)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+All code MUST strictly adhere to PSR-12 Extended Coding Style without exception.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Rationale**: PSR-12 compliance ensures code consistency, readability, and interoperability with the broader PHP ecosystem. This is non-negotiable to maintain professional quality standards.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Requirements**:
+- All PHP files MUST follow PSR-12 formatting rules
+- Automated style checks MUST be integrated into the development workflow
+- PSR-12 violations MUST block merge
+- Code reviews MUST explicitly verify PSR-12 compliance
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Test-Driven Development (NON-NEGOTIABLE)
+
+TDD is mandatory for all feature development. Tests MUST be written first, approved by stakeholders, and initially fail before implementation begins.
+
+**Rationale**: TDD ensures that features are designed around requirements, provides living documentation, and prevents regression. The Red-Green-Refactor cycle enforces quality at the design stage.
+
+**Requirements**:
+- Comprehensive PHPUnit test coverage is required for all features
+- Tests MUST be written BEFORE implementation (Red phase)
+- Tests MUST fail initially to verify they test the correct behavior
+- Implementation proceeds only after tests are written and approved (Green phase)
+- Refactoring occurs only with passing tests (Refactor phase)
+- Test coverage MUST be tracked and reported in CI
+
+### IV. Static Analysis & Type Safety
+
+Static analysis tools MUST be used at strict level, and type declarations MUST be used wherever possible.
+
+**Rationale**: Static analysis catches errors at development time, improves code quality, and enhances IDE support. Strict typing provides clear contracts and prevents type-related bugs.
+
+**Requirements**:
+- PHPStan or Psalm MUST be configured at strict level
+- All files MUST declare `strict_types=1`
+- Type hints MUST be used for all parameters, return types, and properties where possible
+- Static analysis MUST pass before merge is allowed
+- Baseline violations are not permitted for new code
+
+### V. Code Review & Compliance Verification
+
+All changes MUST undergo code review with explicit verification of constitution compliance.
+
+**Rationale**: Code review provides quality gates, knowledge sharing, and ensures adherence to project standards. Constitution compliance must be an explicit checkpoint.
+
+**Requirements**:
+- All changes MUST be reviewed before merge
+- Reviewer MUST explicitly verify:
+  - PSR-12 compliance
+  - Test coverage and TDD adherence
+  - Static analysis passing
+  - Constitution compliance
+- Pull request template MUST include constitution compliance checklist
+- Review comments MUST reference specific principles when raising concerns
+
+### VI. Automated CI/CD Pipeline
+
+A comprehensive automated CI pipeline MUST run on all changes and all checks MUST pass before merge is allowed.
+
+**Rationale**: Automation ensures consistent quality gates, prevents human error, and provides fast feedback. Requiring passing checks before merge maintains main branch stability.
+
+**Requirements**:
+- CI pipeline MUST run on every push and pull request
+- Pipeline MUST include:
+  - PHPUnit test suite execution (all tests must pass)
+  - PSR-12 style checks (must pass with zero violations)
+  - Static analysis (PHPStan/Psalm at strict level, must pass)
+  - Code coverage reporting (must meet minimum threshold)
+- Merge MUST be blocked if any check fails
+- Status checks MUST be required in branch protection rules
+
+### VII. Open Source Distribution Standards
+
+Source code MUST be hosted on GitHub with proper licensing, semantic versioning, and tagged releases.
+
+**Rationale**: Open source distribution requires transparency, clear licensing, and predictable versioning to build trust and enable community contributions.
+
+**Requirements**:
+- Source code MUST be hosted at github.com/codryn/phpcalendar
+- Repository MUST include MIT License file (already present)
+- Project MUST maintain semantic versioning (MAJOR.MINOR.PATCH)
+- Tagged releases MUST be created for all versions
+- Release notes MUST document changes following semantic versioning principles:
+  - MAJOR: Breaking changes (BC breaks in public API)
+  - MINOR: New features (backward compatible additions)
+  - PATCH: Bug fixes (backward compatible fixes)
+- User-facing documentation MUST be comprehensive and maintained for each release
+
+## Quality Gates
+
+All features MUST pass through the following quality gates before being considered complete:
+
+1. **Design Gate**: Acceptance tests written and approved
+2. **Implementation Gate**: Tests pass, PSR-12 compliant, static analysis passes
+3. **Review Gate**: Code review approved with explicit constitution compliance check
+4. **CI Gate**: All automated checks pass
+5. **Documentation Gate**: User-facing documentation updated
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices and conventions. It establishes the foundational principles that define PHPCalendar's development philosophy.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Amendment Process**:
+- Amendments MUST be proposed with clear rationale
+- Amendments MUST be documented in this file with version increment
+- Breaking changes to principles require MAJOR version bump
+- New principles require MINOR version bump
+- Clarifications require PATCH version bump
+
+**Compliance Verification**:
+- All pull requests MUST include constitution compliance checklist
+- Code reviews MUST explicitly verify compliance with relevant principles
+- CI pipeline MUST enforce automated compliance checks
+- Constitution violations MUST be documented and justified if accepted (discouraged)
+
+**Versioning Policy**:
+- Constitution follows semantic versioning
+- Version increments reflect impact on development workflow:
+  - MAJOR: Backward incompatible principle changes (e.g., removing TDD requirement)
+  - MINOR: New principles or significant expansions (e.g., adding security principle)
+  - PATCH: Clarifications, typo fixes, non-semantic improvements
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-08 | **Last Amended**: 2026-01-08

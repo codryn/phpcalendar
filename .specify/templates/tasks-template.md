@@ -49,8 +49,12 @@ description: "Task list template for feature implementation"
 **Purpose**: Project initialization and basic structure
 
 - [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T002 Initialize PHP project with Composer dependencies (codryn/phpcalendar)
+- [ ] T003 [P] Configure PSR-12 linting and formatting tools (PHP_CodeSniffer/PHP-CS-Fixer)
+- [ ] T004 [P] Configure PHPStan or Psalm at strict level
+- [ ] T005 [P] Setup PHPUnit test framework with coverage reporting
+- [ ] T006 [P] Configure CI pipeline (GitHub Actions) for automated checks
+- [ ] T007 Add strict_types=1 to all PHP files
 
 ---
 
