@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "build a configurable calendar. A calendar instance can be created using a provided profile for a fantasy or real world calendar or using a fully customizable calendar. A calendar shall allow to convert a date and time string to a time point and vice versa. It shall allow to calculate the number of days between two time points and provide a time span object type. Profiles shall be provided for: real world (gregorian), fearun, golarion, black eye (das schwarze auge), other widely used fantasy settings such as eberron, dragonlance, greyhawk"
 
+## Clarifications
+
+### Session 2026-01-08
+
+- Q: When adding a TimeSpan to a date that results in an invalid date (e.g., adding 1 month to January 31st), how should the system behave? → A: Throw an exception requiring explicit handling by the developer
+- Q: How should TimeSpan represent durations internally for maximum accuracy? → A: Total seconds/milliseconds (handles time-of-day, very precise)
+- Q: When parsing a date string that doesn't exist in a calendar (e.g., "February 30th" in Gregorian), what should happen? → A: Throw exception immediately with clear error message
+- Q: How should the system handle dates before the calendar epoch (negative years, BCE dates)? → A: Allow epoch/age config for calendars. Gregorian shall use CE/BCE with option to use old style BC/AD. Other according to fantasy world.
+- Q: Can TimePoint objects from different calendar systems be compared or used together? → A: Throw exception - incompatible calendar systems
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Create Calendar with Pre-built Profile (Priority: P1)
@@ -100,13 +110,14 @@ A developer working with various fantasy settings can select from an expanded li
 
 ### Edge Cases
 
-- What happens when parsing dates that don't exist in a calendar (e.g., February 30th in Gregorian)?
-- How does the system handle time points before the calendar epoch (negative years, BCE dates)?
+- **Non-existent dates**: When parsing dates that don't exist in a calendar (e.g., February 30th in Gregorian), the system MUST throw an exception immediately with a clear error message indicating the specific validation failure. This prevents silent data corruption.
+- **Epoch and historical dates**: The system MUST support dates before the calendar epoch with configurable epoch notation. Gregorian calendar MUST use CE/BCE notation by default with an option to use BC/AD notation. Fantasy calendars MUST use epoch notation appropriate to their world (e.g., "DR" for Dale Reckoning in Faerûn, "AR" for Absalom Reckoning in Golarion). Negative years and proper date arithmetic MUST be supported for all calendars.
 - What happens when calculating time spans that exceed integer limits (millions of years)?
 - How does the system handle calendars with no leap year rules versus complex leap year patterns?
 - What happens when formatting dates with insufficient calendar information (e.g., missing month names)?
 - How does the system handle time zones or should it remain timezone-agnostic?
-- What happens when adding a time span to a date that results in an invalid date (e.g., Jan 31 + 1 month)?
+- **Invalid date arithmetic**: When adding a time span to a date that results in an invalid date (e.g., Jan 31 + 1 month = Feb 31), the system MUST throw an exception requiring explicit handling by the developer. This prevents silent data loss and ensures predictable behavior.
+- **Cross-calendar operations**: TimePoint objects from different calendar systems MUST NOT be directly compared or used in arithmetic operations together. The system MUST throw an exception when attempting such operations, clearly indicating the incompatible calendars. Since calendar conversion is out of scope, cross-calendar operations would produce meaningless results.
 - How does the system handle calendar conversion between different calendar systems?
 
 ## Requirements *(mandatory)*
@@ -115,29 +126,30 @@ A developer working with various fantasy settings can select from an expanded li
 
 - **FR-001**: System MUST provide a Calendar class that can be instantiated with either a profile name or custom configuration
 - **FR-002**: System MUST include pre-built profiles for: Gregorian, Faerûn (Harptos), Golarion (Absalom Reckoning), Das Schwarze Auge (Aventurian), Eberron, Dragonlance (Krynn), and Greyhawk (Oerth)
-- **FR-003**: System MUST allow users to create custom calendars by specifying month names, day counts per month, week structure, leap year rules, and epoch information
+- **FR-003**: System MUST allow users to create custom calendars by specifying month names, day counts per month, week structure, leap year rules, epoch information, and epoch notation (e.g., CE/BCE, BC/AD, or custom era names)
 - **FR-004**: System MUST provide a TimePoint class representing a specific moment in time within a calendar
 - **FR-005**: System MUST provide a TimeSpan class representing a duration between two time points
 - **FR-006**: Calendar instances MUST be able to parse date/time strings into TimePoint objects according to calendar rules
 - **FR-007**: Calendar instances MUST be able to format TimePoint objects into date/time strings according to calendar conventions
 - **FR-008**: System MUST calculate the difference between two TimePoint objects and return a TimeSpan object
-- **FR-009**: TimeSpan objects MUST support querying total days, and provide methods for adding/subtracting spans from time points
-- **FR-010**: System MUST validate date strings during parsing and throw clear errors for invalid dates
+- **FR-009**: TimeSpan objects MUST internally store durations as total seconds/milliseconds and support querying total days, hours, minutes, seconds, and provide methods for adding/subtracting spans from time points
+- **FR-010**: System MUST validate date strings during parsing and throw exceptions immediately with clear error messages for invalid dates (non-existent dates, malformed strings, out-of-range values)
 - **FR-011**: System MUST validate custom calendar configurations and reject logically impossible configurations
 - **FR-012**: System MUST correctly handle leap year calculations according to each calendar's specific leap year rules
 - **FR-013**: System MUST support date arithmetic (adding/subtracting time spans to/from time points)
-- **FR-014**: System MUST handle dates before and after the calendar epoch (negative years or BCE dates)
+- **FR-014**: System MUST handle dates before and after the calendar epoch (negative years or BCE/BC dates) with full arithmetic support and configurable epoch notation per calendar
 - **FR-015**: Profile metadata MUST be queryable, including available profile names, calendar properties, and setting information
+- **FR-016**: System MUST prevent operations between TimePoint objects from different calendar systems and throw clear exceptions indicating calendar incompatibility
 
 ### Key Entities
 
 - **Calendar**: Represents a calendar system with specific rules. Contains configuration for months, days, weeks, leap years, and formatting patterns. Can be instantiated from profiles or custom configuration.
 
-- **TimePoint**: Represents a specific point in time within a calendar system. Immutable value object containing year, month, day, and optional time components. Tied to the calendar that created it.
+- **TimePoint**: Represents a specific point in time within a calendar system. Immutable value object containing year, month, day, and optional time components. Tied to the calendar that created it and cannot be mixed with TimePoints from other calendars in comparisons or arithmetic operations.
 
-- **TimeSpan**: Represents a duration between two points in time. Contains day count and provides methods for duration queries. Supports positive and negative spans for past/future direction.
+- **TimeSpan**: Represents a duration between two points in time. Internally represented as total seconds/milliseconds for maximum precision and time-of-day handling. Provides methods for duration queries (total days, hours, minutes, seconds). Supports positive and negative spans for past/future direction.
 
-- **CalendarProfile**: Represents a pre-configured calendar template. Contains calendar rules, month names, day counts, leap year patterns, and metadata about the calendar's source (game setting, real-world calendar, etc.).
+- **CalendarProfile**: Represents a pre-configured calendar template. Contains calendar rules, month names, day counts, leap year patterns, epoch information with configurable notation (CE/BCE, BC/AD, or fantasy-world-specific), and metadata about the calendar's source (game setting, real-world calendar, etc.).
 
 - **CalendarConfiguration**: Represents custom calendar parameters for creating non-profile calendars. Includes all necessary parameters to define calendar structure and behavior.
 
@@ -160,7 +172,7 @@ A developer working with various fantasy settings can select from an expanded li
 
 - **Time Components**: While the focus is on dates (year/month/day), time-of-day components (hours/minutes/seconds) are supported as optional properties of TimePoint. If not specified, they default to midnight.
 
-- **Calendar Epochs**: Each calendar profile defines its own epoch (year 0 or equivalent). Dates before the epoch are represented with negative years or BCE/equivalent notation according to calendar convention.
+- **Calendar Epochs**: Each calendar profile defines its own epoch (year 0 or equivalent) and epoch notation. Dates before the epoch are represented with negative years or era-specific notation (CE/BCE for Gregorian with optional BC/AD, DR for Faerûn, AR for Golarion, etc.) according to calendar convention. Full date arithmetic is supported across the epoch boundary.
 
 - **Date Format Patterns**: Each calendar profile provides default formatting patterns. The system supports flexible parsing with multiple format patterns but defaults to calendar-specific conventions for formatting output.
 
