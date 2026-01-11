@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\GolarionTranslations;
  */
 final class GolarionProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     private const DAYS_PER_MONTH = [
         1 => 31,  // Abadius
         2 => 28,  // Calistril
@@ -82,9 +84,6 @@ final class GolarionProfile extends AbstractCalendarProfile
      */
     public function getCopyrightNotice(): ?string
     {
-        return 'The calendar names, month names, and associated terminology from the Golarion '
-            . 'setting are the property of Paizo Inc. This calendar implementation is provided '
-            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
-            . 'Pathfinder, Golarion, and all related trademarks are property of Paizo Inc.';
+        return $this->getPaizoCopyright('Golarion', 'Pathfinder, Golarion');
     }
 }

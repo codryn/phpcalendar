@@ -121,21 +121,29 @@ class CopyrightNoticeTest extends TestCase
     }
 
     /**
+     * Provide RPG profiles for testing
+     *
+     * @return array<string, array{0: object}>
+     */
+    private function getRPGProfiles(): array
+    {
+        return [
+            'faerun' => [new FaerunProfile()],
+            'golarion' => [new GolarionProfile()],
+            'dsa' => [new DSAProfile()],
+            'eberron' => [new EberronProfile()],
+            'dragonlance' => [new DragonlanceProfile()],
+            'greyhawk' => [new GreyhawkProfile()],
+        ];
+    }
+
+    /**
      * Test that all RPG copyright notices mention non-commercial use
      */
     public function testAllRPGProfilesHaveNonCommercialClause(): void
     {
-        $rpgProfiles = [
-            new FaerunProfile(),
-            new GolarionProfile(),
-            new DSAProfile(),
-            new EberronProfile(),
-            new DragonlanceProfile(),
-            new GreyhawkProfile(),
-        ];
-
-        foreach ($rpgProfiles as $profile) {
-            $copyright = $profile->getCopyrightNotice();
+        foreach ($this->getRPGProfiles() as $profile) {
+            $copyright = $profile[0]->getCopyrightNotice();
             $this->assertIsString($copyright);
             $this->assertStringContainsString('non-commercial', $copyright);
         }
@@ -146,17 +154,8 @@ class CopyrightNoticeTest extends TestCase
      */
     public function testAllRPGProfilesHaveGameMasterClause(): void
     {
-        $rpgProfiles = [
-            new FaerunProfile(),
-            new GolarionProfile(),
-            new DSAProfile(),
-            new EberronProfile(),
-            new DragonlanceProfile(),
-            new GreyhawkProfile(),
-        ];
-
-        foreach ($rpgProfiles as $profile) {
-            $copyright = $profile->getCopyrightNotice();
+        foreach ($this->getRPGProfiles() as $profile) {
+            $copyright = $profile[0]->getCopyrightNotice();
             $this->assertIsString($copyright);
             $this->assertStringContainsString('game masters', $copyright);
         }

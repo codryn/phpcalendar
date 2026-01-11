@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\EberronTranslations;
  */
 final class EberronProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     public function getName(): string
     {
         return 'eberron';
@@ -68,10 +70,6 @@ final class EberronProfile extends AbstractCalendarProfile
      */
     public function getCopyrightNotice(): ?string
     {
-        return 'The calendar names, month names, and associated terminology from the Eberron '
-            . 'setting are the property of Wizards of the Coast. This calendar implementation is provided '
-            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
-            . 'Dungeons & Dragons, D&D, Eberron, and all related trademarks are property of '
-            . 'Wizards of the Coast LLC.';
+        return $this->getWizardsOfTheCoastCopyright('Eberron', 'Eberron');
     }
 }

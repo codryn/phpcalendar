@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\DragonlanceTranslations;
  */
 final class DragonlanceProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     private const DAYS_PER_MONTH = [
         1 => 31,  // Winter Deep
         2 => 28,  // Winter Wane
@@ -89,10 +91,6 @@ final class DragonlanceProfile extends AbstractCalendarProfile
      */
     public function getCopyrightNotice(): ?string
     {
-        return 'The calendar names, month names, and associated terminology from the Dragonlance '
-            . 'setting are the property of Wizards of the Coast. This calendar implementation is provided '
-            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
-            . 'Dungeons & Dragons, D&D, Dragonlance, Krynn, and all related trademarks are property of '
-            . 'Wizards of the Coast LLC.';
+        return $this->getWizardsOfTheCoastCopyright('Dragonlance', 'Dragonlance, Krynn');
     }
 }
