@@ -94,4 +94,16 @@ final class FaerunProfile extends AbstractCalendarProfile
     {
         return FaerunTranslations::getNamelessDays($this->locale);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): ?string
+    {
+        return 'The calendar names, month names, and associated terminology from the Forgotten Realms '
+            . 'setting are the property of Wizards of the Coast. This calendar implementation is provided '
+            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
+            . 'Dungeons & Dragons, D&D, Forgotten Realms, and all related trademarks are property of '
+            . 'Wizards of the Coast LLC.';
+    }
 }

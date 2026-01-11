@@ -70,4 +70,16 @@ final class DSAProfile extends AbstractCalendarProfile
     {
         return DSATranslations::getNamelessDays($this->locale);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): ?string
+    {
+        return 'The calendar names, month names, and associated terminology from Das Schwarze Auge '
+            . '(The Dark Eye) are the property of Ulisses Spiele. This calendar implementation is provided '
+            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
+            . 'Das Schwarze Auge, The Dark Eye, Aventuria, and all related trademarks are property of '
+            . 'Ulisses Spiele GmbH.';
+    }
 }

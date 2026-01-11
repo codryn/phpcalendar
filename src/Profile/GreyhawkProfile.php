@@ -67,4 +67,16 @@ final class GreyhawkProfile extends AbstractCalendarProfile
             'description' => 'Common Year calendar with 12 months of 28 days plus 4 festival weeks (364 days total)',
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): ?string
+    {
+        return 'The calendar names, month names, and associated terminology from the Greyhawk '
+            . 'setting are the property of Wizards of the Coast. This calendar implementation is provided '
+            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
+            . 'Dungeons & Dragons, D&D, Greyhawk, and all related trademarks are property of '
+            . 'Wizards of the Coast LLC.';
+    }
 }

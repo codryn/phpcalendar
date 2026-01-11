@@ -58,6 +58,15 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
     /**
      * @inheritDoc
      */
+    public function getCopyrightNotice(): ?string
+    {
+        // No copyright notice by default (e.g., for real-world calendars)
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getNamelessDays(): array
     {
         // No nameless days by default

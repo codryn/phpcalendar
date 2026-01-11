@@ -93,6 +93,17 @@ interface CalendarProfileInterface
     public function getMetadata(): array;
 
     /**
+     * Get copyright notice for this calendar
+     *
+     * Returns a copyright notice for calendars that are part of RPG game systems/worlds.
+     * The notice indicates that names from the game world are used solely for non-commercial
+     * purposes to help game masters keep track of their campaigns.
+     *
+     * @return string|null Copyright notice, or null if not applicable
+     */
+    public function getCopyrightNotice(): ?string;
+
+    /**
      * Get nameless days configuration for this calendar
      *
      * Returns an array of nameless days with their position and names.

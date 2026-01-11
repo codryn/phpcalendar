@@ -83,4 +83,16 @@ final class DragonlanceProfile extends AbstractCalendarProfile
             'description' => 'Krynn calendar with varying month lengths, AC/PC reckoning from the Cataclysm',
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): ?string
+    {
+        return 'The calendar names, month names, and associated terminology from the Dragonlance '
+            . 'setting are the property of Wizards of the Coast. This calendar implementation is provided '
+            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
+            . 'Dungeons & Dragons, D&D, Dragonlance, Krynn, and all related trademarks are property of '
+            . 'Wizards of the Coast LLC.';
+    }
 }

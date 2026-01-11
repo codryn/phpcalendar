@@ -62,4 +62,16 @@ final class EberronProfile extends AbstractCalendarProfile
             'description' => 'Galifar Calendar with 12 months of 28 days each (336 days per year)',
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): ?string
+    {
+        return 'The calendar names, month names, and associated terminology from the Eberron '
+            . 'setting are the property of Wizards of the Coast. This calendar implementation is provided '
+            . 'for non-commercial use only to help game masters and players keep track of their campaigns. '
+            . 'Dungeons & Dragons, D&D, Eberron, and all related trademarks are property of '
+            . 'Wizards of the Coast LLC.';
+    }
 }
