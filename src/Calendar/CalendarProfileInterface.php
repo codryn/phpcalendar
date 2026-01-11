@@ -76,4 +76,34 @@ interface CalendarProfileInterface
      * @return array<string, mixed> Metadata
      */
     public function getMetadata(): array;
+
+    /**
+     * Convert date components to Unix timestamp
+     *
+     * @param int $year Year
+     * @param int $month Month (1-based)
+     * @param int $day Day (1-based)
+     * @param int $hour Hour (0-23)
+     * @param int $minute Minute (0-59)
+     * @param int $second Second (0-59)
+     * @param int $microsecond Microsecond (0-999999)
+     * @return float Seconds since epoch with microseconds
+     */
+    public function dateToSeconds(
+        int $year,
+        int $month,
+        int $day,
+        int $hour = 0,
+        int $minute = 0,
+        int $second = 0,
+        int $microsecond = 0,
+    ): float;
+
+    /**
+     * Convert Unix timestamp to date components
+     *
+     * @param float $seconds Seconds since epoch with microseconds
+     * @return array{year: int, month: int, day: int, hour: int, minute: int, second: int, microsecond: int}
+     */
+    public function secondsToDate(float $seconds): array;
 }

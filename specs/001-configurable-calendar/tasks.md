@@ -169,23 +169,23 @@
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T067 [P] [US4] Write acceptance test UserStory4Test.php: Create custom calendar with configuration, verify properties
-- [ ] T068 [P] [US4] Write acceptance test UserStory4Test.php: Custom calendar with irregular month lengths handles date calculations
-- [ ] T069 [P] [US4] Write acceptance test UserStory4Test.php: Custom leap year rules (every 5 years) applied correctly
-- [ ] T070 [P] [US4] Write acceptance test UserStory4Test.php: Invalid configuration (negative days, empty names) throws InvalidCalendarConfigException
-- [ ] T071 [P] [US4] Write acceptance test UserStory4Test.php: Custom calendar behaves identically to profile-based for parsing/formatting
-- [ ] T072 [P] [US4] Write unit tests for CalendarConfiguration in tests/Unit/Calendar/CalendarConfigurationTest.php
-- [ ] T073 [P] [US4] Write unit tests for CalendarValidator in tests/Unit/Validator/CalendarValidatorTest.php
+- [X] T067 [P] [US4] Write acceptance test UserStory4Test.php: Create custom calendar with configuration, verify properties
+- [X] T068 [P] [US4] Write acceptance test UserStory4Test.php: Custom calendar with irregular month lengths handles date calculations
+- [X] T069 [P] [US4] Write acceptance test UserStory4Test.php: Custom leap year rules (every 5 years) applied correctly
+- [X] T070 [P] [US4] Write acceptance test UserStory4Test.php: Invalid configuration (negative days, empty names) throws InvalidCalendarConfigException
+- [X] T071 [P] [US4] Write acceptance test UserStory4Test.php: Custom calendar behaves identically to profile-based for parsing/formatting
+- [X] T072 [P] [US4] Write unit tests for CalendarConfiguration in tests/Unit/Calendar/CalendarConfigurationTest.php
+- [X] T073 [P] [US4] Write unit tests for CalendarValidator in tests/Unit/Validator/CalendarValidatorTest.php
 
 ### Implementation for User Story 4
 
-- [ ] T074 [P] [US4] Implement CalendarConfiguration value object in src/Calendar/CalendarConfiguration.php with all properties (strict types)
-- [ ] T075 [P] [US4] Add CalendarConfiguration constructor with named parameters: name, displayName, monthNames, daysPerMonth, leapYearRule, epochNotation, formatPatterns
-- [ ] T076 [P] [US4] Implement CalendarValidator in src/Validator/CalendarValidator.php with validate() method checking all rules
-- [ ] T077 [US4] Add validation rules: non-empty name, at least 1 month, positive days, matching array lengths, valid epoch notation
-- [ ] T078 [US4] Create CustomProfile adapter in src/Profile/CustomProfile.php wrapping CalendarConfiguration as CalendarProfileInterface
-- [ ] T079 [US4] Implement Calendar::fromConfiguration(CalendarConfiguration) static factory validating config and wrapping in CustomProfile
-- [ ] T080 [US4] Write integration test in tests/Integration/CustomCalendarTest.php for end-to-end custom calendar creation and usage
+- [X] T074 [P] [US4] Implement CalendarConfiguration value object in src/Calendar/CalendarConfiguration.php with all properties (strict types)
+- [X] T075 [P] [US4] Add CalendarConfiguration constructor with named parameters: name, displayName, monthNames, daysPerMonth, leapYearRule, epochNotation, formatPatterns
+- [X] T076 [P] [US4] Implement CalendarValidator in src/Validator/CalendarValidator.php with validate() method checking all rules
+- [X] T077 [US4] Add validation rules: non-empty name, at least 1 month, positive days, matching array lengths, valid epoch notation
+- [X] T078 [US4] Create CustomProfile adapter in src/Profile/CustomProfile.php wrapping CalendarConfiguration as CalendarProfileInterface
+- [X] T079 [US4] Implement Calendar::fromConfiguration(CalendarConfiguration) static factory validating config and wrapping in CustomProfile
+- [X] T080 [US4] Write integration test in tests/Integration/CustomCalendarTest.php for end-to-end custom calendar creation and usage
 
 **Checkpoint**: At this point, User Story 4 is fully functional - developers can create fully custom calendars
 

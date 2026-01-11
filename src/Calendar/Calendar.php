@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Codryn\PHPCalendar\Calendar;
 
 use Codryn\PHPCalendar\Exception\IncompatibleCalendarException;
+use Codryn\PHPCalendar\Exception\InvalidCalendarConfigException;
 use Codryn\PHPCalendar\Parser\DateFormatter;
 use Codryn\PHPCalendar\Parser\DateParser;
+use Codryn\PHPCalendar\Profile\CustomProfile;
+use Codryn\PHPCalendar\Validator\CalendarValidator;
 
 /**
  * Main Calendar class
@@ -41,6 +44,23 @@ final class Calendar
     public static function fromProfile(string $profileName): self
     {
         $profile = ProfileRegistry::get($profileName);
+
+        return new self($profile);
+    }
+
+    /**
+     * Create calendar from custom configuration
+     *
+     * @param CalendarConfiguration $config Custom calendar parameters
+     * @return self
+     * @throws InvalidCalendarConfigException if configuration invalid
+     */
+    public static function fromConfiguration(CalendarConfiguration $config): self
+    {
+        $validator = new CalendarValidator();
+        $validator->validate($config);
+
+        $profile = new CustomProfile($config);
 
         return new self($profile);
     }
@@ -121,7 +141,7 @@ final class Calendar
      *
      * @param int $month Month (1-based)
      * @param int $year Year (negative for pre-epoch)
-     * @return int Number of days
+     * @return int Number of days in month
      */
     public function getDaysInMonth(int $month, int $year): int
     {
@@ -129,7 +149,7 @@ final class Calendar
     }
 
     /**
-     * Check if year is leap year
+     * Check if given year is a leap year
      *
      * @param int $year Year to check
      * @return bool True if leap year
@@ -140,11 +160,11 @@ final class Calendar
     }
 
     /**
-     * Calculate time difference between two points
+     * Calculate time difference between two TimePoints
      *
-     * @param TimePoint $start Starting time point
-     * @param TimePoint $end Ending time point
-     * @return TimeSpan Duration from start to end
+     * @param TimePoint $start Start time
+     * @param TimePoint $end End time
+     * @return TimeSpan Time difference
      * @throws IncompatibleCalendarException if points from different calendars
      */
     public function diff(TimePoint $start, TimePoint $end): TimeSpan
@@ -198,12 +218,60 @@ final class Calendar
     }
 
     /**
-     * Get epoch notation (e.g., CE/BCE, DR, AR)
+     * Get epoch notation
      *
-     * @return array{before: string, after: string} Era labels
+     * @return array{before: string, after: string} Epoch notation
      */
     public function getEpochNotation(): array
     {
         return $this->profile->getEpochNotation();
+    }
+
+    /**
+     * Get the profile for calendar calculations
+     *
+     * @internal
+     * @return CalendarProfileInterface
+     */
+    public function getProfile(): CalendarProfileInterface
+    {
+        return $this->profile;
+    }
+
+    /**
+     * Convert date components to Unix timestamp
+     *
+     * @internal
+     * @param int $year Year
+     * @param int $month Month (1-based)
+     * @param int $day Day (1-based)
+     * @param int $hour Hour (0-23)
+     * @param int $minute Minute (0-59)
+     * @param int $second Second (0-59)
+     * @param int $microsecond Microsecond (0-999999)
+     * @return float Seconds since epoch with microseconds
+     */
+    public function dateToSeconds(
+        int $year,
+        int $month,
+        int $day,
+        int $hour = 0,
+        int $minute = 0,
+        int $second = 0,
+        int $microsecond = 0,
+    ): float {
+        return $this->profile->dateToSeconds($year, $month, $day, $hour, $minute, $second, $microsecond);
+    }
+
+    /**
+     * Convert Unix timestamp to date components
+     *
+     * @internal
+     * @param float $seconds Seconds since epoch with microseconds
+     * @return array{year: int, month: int, day: int, hour: int, minute: int, second: int, microsecond: int}
+     */
+    public function secondsToDate(float $seconds): array
+    {
+        return $this->profile->secondsToDate($seconds);
     }
 }
