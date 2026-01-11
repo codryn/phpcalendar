@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Tests\Unit\Profile;
 
-use Codryn\PHPCalendar\Profile\DSAProfile;
 use Codryn\PHPCalendar\Profile\DragonlanceProfile;
+use Codryn\PHPCalendar\Profile\DSAProfile;
 use Codryn\PHPCalendar\Profile\EberronProfile;
 use Codryn\PHPCalendar\Profile\FaerunProfile;
 use Codryn\PHPCalendar\Profile\GolarionProfile;
