@@ -30,6 +30,9 @@ final class CalendarConfiguration
     /** @var array<int, string> */
     private array $formatPatterns;
 
+    /** @var array<int, array{position: int, names: array<int, string>, leap: bool}> */
+    private array $namelessDays;
+
     /**
      * @param string $name Calendar identifier
      * @param string $displayName Human-readable name
@@ -38,6 +41,7 @@ final class CalendarConfiguration
      * @param callable(int): bool|null $leapYearRule Function to determine leap years
      * @param array{before: string, after: string} $epochNotation Era labels
      * @param array<int, string> $formatPatterns Date format patterns
+     * @param array<int, array{position: int, names: array<int, string>, leap: bool}> $namelessDays Nameless days configuration
      */
     public function __construct(
         string $name,
@@ -47,6 +51,7 @@ final class CalendarConfiguration
         ?callable $leapYearRule = null,
         array $epochNotation = ['before' => 'BE', 'after' => 'AE'],
         array $formatPatterns = ['F j, Y'],
+        array $namelessDays = [],
     ) {
         $this->name = $name;
         $this->displayName = $displayName;
@@ -55,6 +60,7 @@ final class CalendarConfiguration
         $this->leapYearRule = $leapYearRule;
         $this->epochNotation = $epochNotation;
         $this->formatPatterns = $formatPatterns;
+        $this->namelessDays = $namelessDays;
     }
 
     public function getName(): string
@@ -105,5 +111,13 @@ final class CalendarConfiguration
     public function getFormatPatterns(): array
     {
         return $this->formatPatterns;
+    }
+
+    /**
+     * @return array<int, array{position: int, names: array<int, string>, leap: bool}>
+     */
+    public function getNamelessDays(): array
+    {
+        return $this->namelessDays;
     }
 }

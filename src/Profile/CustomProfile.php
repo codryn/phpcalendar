@@ -69,4 +69,9 @@ final class CustomProfile extends AbstractCalendarProfile
             'description' => 'Custom calendar configuration',
         ];
     }
+
+    public function getNamelessDays(): array
+    {
+        return $this->config->getNamelessDays();
+    }
 }
