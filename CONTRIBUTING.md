@@ -6,7 +6,7 @@ Thank you for your interest in contributing to PHPCalendar! This document provid
 
 ### Prerequisites
 
-- PHP 8.0 or higher
+- PHP 8.1 or higher
 - Composer
 - Git
 
@@ -52,7 +52,7 @@ declare(strict_types=1);
 
 ### Type Hints
 
-- Use PHP 8.0 type hints for all parameters and return values
+- Use PHP 8.1 type hints for all parameters and return values
 - Document complex types with PHPDoc annotations
 - Use union types when appropriate (e.g., `string|null`)
 
@@ -122,10 +122,10 @@ composer test:coverage
 
 ## Static Analysis
 
-We use PHPStan at level 9 (strictest) with strict rules:
+We use PHPStan 2.1 at level 10 (strict) with strict rules:
 
 ```bash
-composer stan
+composer analyse
 ```
 
 All code must pass PHPStan analysis without errors before merging.

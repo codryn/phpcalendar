@@ -206,7 +206,7 @@ Calendar instances are immutable and thread-safe after construction.
 
 ## Version Compatibility
 
-- Requires: PHP 8.0+
+- Requires: PHP 8.1+
 - Breaking changes increment MAJOR version
 - New profiles/features increment MINOR version
 - Bug fixes increment PATCH version
