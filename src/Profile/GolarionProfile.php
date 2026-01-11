@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Profile;
 
+use Codryn\PHPCalendar\Locale\GolarionTranslations;
+
 /**
  * Golarion Calendar Profile (Pathfinder)
  *
@@ -33,25 +35,12 @@ final class GolarionProfile extends AbstractCalendarProfile
 
     public function getDisplayName(): string
     {
-        return 'Golarion (Absalom Reckoning)';
+        return GolarionTranslations::getDisplayName($this->locale);
     }
 
     public function getMonthNames(): array
     {
-        return [
-            1 => 'Abadius',
-            2 => 'Calistril',
-            3 => 'Pharast',
-            4 => 'Gozran',
-            5 => 'Desnus',
-            6 => 'Sarenith',
-            7 => 'Erastus',
-            8 => 'Arodus',
-            9 => 'Rova',
-            10 => 'Lamashan',
-            11 => 'Neth',
-            12 => 'Kuthona',
-        ];
+        return GolarionTranslations::getMonthNames($this->locale);
     }
 
     public function getDaysInMonth(int $month, int $year): int
@@ -67,10 +56,7 @@ final class GolarionProfile extends AbstractCalendarProfile
 
     public function getEpochNotation(): array
     {
-        return [
-            'before' => 'Before AR',
-            'after' => 'AR',
-        ];
+        return GolarionTranslations::getEpochNotation($this->locale);
     }
 
     public function getFormatPatterns(): array

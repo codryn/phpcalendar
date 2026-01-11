@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Profile;
 
+use Codryn\PHPCalendar\Locale\GreyhawkTranslations;
+
 /**
  * Greyhawk Calendar Profile
  *
@@ -18,29 +20,12 @@ final class GreyhawkProfile extends AbstractCalendarProfile
 
     public function getDisplayName(): string
     {
-        return 'Greyhawk (Common Year)';
+        return GreyhawkTranslations::getDisplayName($this->locale);
     }
 
     public function getMonthNames(): array
     {
-        return [
-            1 => 'Needfest',
-            2 => 'Fireseek',
-            3 => 'Readying',
-            4 => 'Coldeven',
-            5 => 'Growfest',
-            6 => 'Planting',
-            7 => 'Flocktime',
-            8 => 'Wealsun',
-            9 => 'Richfest',
-            10 => 'Reaping',
-            11 => 'Goodmonth',
-            12 => 'Harvester',
-            13 => 'Brewfest',
-            14 => 'Patchwall',
-            15 => 'Ready\'reat',
-            16 => 'Sunsebb',
-        ];
+        return GreyhawkTranslations::getMonthNames($this->locale);
     }
 
     public function getDaysInMonth(int $month, int $year): int
@@ -62,10 +47,7 @@ final class GreyhawkProfile extends AbstractCalendarProfile
 
     public function getEpochNotation(): array
     {
-        return [
-            'before' => 'Before CY',
-            'after' => 'CY',
-        ];
+        return GreyhawkTranslations::getEpochNotation($this->locale);
     }
 
     public function getFormatPatterns(): array

@@ -38,12 +38,17 @@ final class Calendar
      * Create calendar from a pre-built profile
      *
      * @param string $profileName Profile identifier (e.g., 'gregorian', 'faerun')
+     * @param string|null $locale Locale for localized names (e.g., 'en-us', 'de', 'fr', 'es', 'it'). Defaults to 'en-us' if not specified or unsupported.
      * @return self
      * @throws \InvalidArgumentException if profile not found
      */
-    public static function fromProfile(string $profileName): self
+    public static function fromProfile(string $profileName, ?string $locale = null): self
     {
         $profile = ProfileRegistry::get($profileName);
+
+        if ($locale !== null) {
+            $profile->setLocale($locale);
+        }
 
         return new self($profile);
     }

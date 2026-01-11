@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Profile;
 
+use Codryn\PHPCalendar\Locale\EberronTranslations;
+
 /**
  * Eberron Calendar Profile
  *
@@ -18,25 +20,12 @@ final class EberronProfile extends AbstractCalendarProfile
 
     public function getDisplayName(): string
     {
-        return 'Eberron (Galifar Calendar)';
+        return EberronTranslations::getDisplayName($this->locale);
     }
 
     public function getMonthNames(): array
     {
-        return [
-            1 => 'Zarantyr',
-            2 => 'Olarune',
-            3 => 'Therendor',
-            4 => 'Eyre',
-            5 => 'Dravago',
-            6 => 'Nymm',
-            7 => 'Lharvion',
-            8 => 'Barrakas',
-            9 => 'Rhaan',
-            10 => 'Sypheros',
-            11 => 'Aryth',
-            12 => 'Vult',
-        ];
+        return EberronTranslations::getMonthNames($this->locale);
     }
 
     public function getDaysInMonth(int $month, int $year): int
@@ -53,10 +42,7 @@ final class EberronProfile extends AbstractCalendarProfile
 
     public function getEpochNotation(): array
     {
-        return [
-            'before' => 'Before YK',
-            'after' => 'YK',
-        ];
+        return EberronTranslations::getEpochNotation($this->locale);
     }
 
     public function getFormatPatterns(): array
