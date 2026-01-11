@@ -153,7 +153,7 @@ final class TimePoint
             $this->hour,
             $this->minute,
             $this->second,
-            $this->microsecond
+            $this->microsecond,
         );
 
         return (int) $totalSeconds;
@@ -191,7 +191,7 @@ final class TimePoint
             $hour,
             $minute,
             $second,
-            $microseconds
+            $microseconds,
         );
     }
 

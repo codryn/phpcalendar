@@ -201,7 +201,7 @@ final class Calendar
             $point->getHour(),
             $point->getMinute(),
             $point->getSecond(),
-            $point->getMicrosecond()
+            $point->getMicrosecond(),
         );
 
         return (int) $totalSeconds;

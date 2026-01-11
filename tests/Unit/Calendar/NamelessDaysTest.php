@@ -22,7 +22,7 @@ class NamelessDaysTest extends TestCase
 
         $this->assertIsArray($namelessDays);
         $this->assertNotEmpty($namelessDays);
-        
+
         // DSA has 5 nameless days after month 12
         $this->assertCount(1, $namelessDays);
         $this->assertSame(12, $namelessDays[0]['position']);
@@ -38,10 +38,10 @@ class NamelessDaysTest extends TestCase
 
         $this->assertIsArray($namelessDays);
         $this->assertNotEmpty($namelessDays);
-        
+
         // Faerun has 5 festival days at various positions
         $this->assertCount(5, $namelessDays);
-        
+
         // Check that Midsummer has leap day support
         $midsummerGroup = null;
         foreach ($namelessDays as $group) {
@@ -50,7 +50,7 @@ class NamelessDaysTest extends TestCase
                 break;
             }
         }
-        
+
         $this->assertNotNull($midsummerGroup);
         $this->assertTrue($midsummerGroup['leap']);
     }
@@ -58,12 +58,12 @@ class NamelessDaysTest extends TestCase
     public function testDSAYearHas365Days(): void
     {
         $calendar = Calendar::fromProfile('dsa');
-        
+
         $startDate = new TimePoint($calendar, 1000, 1, 1);
         $endDate = new TimePoint($calendar, 1001, 1, 1);
-        
+
         $span = $calendar->diff($startDate, $endDate);
-        
+
         // DSA year has 360 days in months + 5 nameless days = 365 total
         $this->assertSame(365, $span->getTotalDays());
     }
@@ -71,13 +71,13 @@ class NamelessDaysTest extends TestCase
     public function testFaerunLeapYearHas366Days(): void
     {
         $calendar = Calendar::fromProfile('faerun');
-        
+
         // 1492 is a leap year (divisible by 4)
         $startDate = new TimePoint($calendar, 1492, 1, 1);
         $endDate = new TimePoint($calendar, 1493, 1, 1);
-        
+
         $span = $calendar->diff($startDate, $endDate);
-        
+
         // Faerun leap year has 360 days in months + 5 festivals + 1 Shieldmeet = 366 total
         $this->assertSame(366, $span->getTotalDays());
     }
@@ -85,13 +85,13 @@ class NamelessDaysTest extends TestCase
     public function testFaerunNonLeapYearHas365Days(): void
     {
         $calendar = Calendar::fromProfile('faerun');
-        
+
         // 1493 is not a leap year
         $startDate = new TimePoint($calendar, 1493, 1, 1);
         $endDate = new TimePoint($calendar, 1494, 1, 1);
-        
+
         $span = $calendar->diff($startDate, $endDate);
-        
+
         // Faerun non-leap year has 360 days in months + 5 festivals = 365 total
         $this->assertSame(365, $span->getTotalDays());
     }
@@ -99,30 +99,32 @@ class NamelessDaysTest extends TestCase
     public function testAddingDaysAccountsForNamelessDays(): void
     {
         $calendar = Calendar::fromProfile('dsa');
-        
-        // Start at the end of month 12
-        $startDate = new TimePoint($calendar, 1000, 12, 30);
-        
-        // Add 6 days (1 day in month 12 + 5 nameless days = day 1 of month 1, year 1001)
-        $endDate = $startDate->add(TimeSpan::fromSeconds(6 * 86400));
-        
-        // Should have moved to year 1001
+
+        // Start at day 25 of month 12
+        $startDate = new TimePoint($calendar, 1000, 12, 25);
+
+        // Add 11 days (5 days to end of month 12 + 5 nameless days + 1 day into year 1001 = day 1 of month 1, year 1001)
+        $endDate = $startDate->add(TimeSpan::fromSeconds(11 * 86400));
+
+        // Should have moved to year 1001, month 1, day 1
         $this->assertSame(1001, $endDate->getYear());
-        
+        $this->assertSame(1, $endDate->getMonth());
+        $this->assertSame(1, $endDate->getDay());
+
         // The total calculation should account for nameless days
         $span = $calendar->diff($startDate, $endDate);
-        $this->assertSame(6, $span->getTotalDays());
+        $this->assertSame(11, $span->getTotalDays());
     }
 
     public function testDateArithmeticAcrossMultipleYearsWithNamelessDays(): void
     {
         $calendar = Calendar::fromProfile('dsa');
-        
+
         $startDate = new TimePoint($calendar, 1000, 1, 1);
         $endDate = new TimePoint($calendar, 1005, 1, 1);
-        
+
         $span = $calendar->diff($startDate, $endDate);
-        
+
         // 5 years × 365 days/year = 1825 days
         $this->assertSame(1825, $span->getTotalDays());
     }

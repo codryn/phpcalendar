@@ -152,7 +152,8 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
         // We need to iterate through months and nameless day groups
         $month = 1;
         $monthCount = $this->getMonthCount();
-        
+        $foundMonth = false;
+
         for ($m = 1; $m <= $monthCount; $m++) {
             // First check if there are nameless days after the previous month
             foreach ($this->getNamelessDays() as $namelessGroup) {
@@ -161,7 +162,7 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                     if ($namelessGroup['leap'] && $this->isLeapYear($year)) {
                         $namelessCount++;
                     }
-                    
+
                     if ($days < $namelessCount) {
                         // We're in a nameless day period.
                         // Nameless days don't belong to any specific month, so we represent them
@@ -172,7 +173,7 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                             $month = $monthCount;
                         }
                         $day = $this->getDaysInMonth($month, $year);
-                        
+
                         return [
                             'year' => $year,
                             'month' => $month,
@@ -183,47 +184,51 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                             'microsecond' => $microsecond,
                         ];
                     }
-                    
+
                     $days -= $namelessCount;
                 }
             }
-            
+
             // Now check the month itself
             $daysInMonth = $this->getDaysInMonth($m, $year);
             if ($days < $daysInMonth) {
                 $month = $m;
+                $foundMonth = true;
                 break;
             }
             $days -= $daysInMonth;
         }
 
         // Check for nameless days at the end of the year
-        foreach ($this->getNamelessDays() as $namelessGroup) {
-            if ($namelessGroup['position'] === $monthCount) {
-                $namelessCount = \count($namelessGroup['names']);
-                if ($namelessGroup['leap'] && $this->isLeapYear($year)) {
-                    $namelessCount++;
-                }
-                
-                if ($days < $namelessCount) {
-                    // We're in the nameless days at the end of the year.
-                    // Nameless days don't belong to any specific month, so we represent them
-                    // as being in the last month's last day for display purposes.
-                    // This is acceptable because nameless days are primarily used for
-                    // calculation purposes (year length, date differences) rather than
-                    // for specific date representation.
-                    $month = $monthCount;
-                    $day = $this->getDaysInMonth($month, $year);
-                    
-                    return [
-                        'year' => $year,
-                        'month' => $month,
-                        'day' => $day,
-                        'hour' => $hour,
-                        'minute' => $minute,
-                        'second' => $second,
-                        'microsecond' => $microsecond,
-                    ];
+        // Only check this if we completed the month loop without finding a month
+        if (!$foundMonth) {
+            foreach ($this->getNamelessDays() as $namelessGroup) {
+                if ($namelessGroup['position'] === $monthCount) {
+                    $namelessCount = \count($namelessGroup['names']);
+                    if ($namelessGroup['leap'] && $this->isLeapYear($year)) {
+                        $namelessCount++;
+                    }
+
+                    if ($days < $namelessCount) {
+                        // We're in the nameless days at the end of the year.
+                        // Nameless days don't belong to any specific month, so we represent them
+                        // as being in the last month's last day for display purposes.
+                        // This is acceptable because nameless days are primarily used for
+                        // calculation purposes (year length, date differences) rather than
+                        // for specific date representation.
+                        $month = $monthCount;
+                        $day = $this->getDaysInMonth($month, $year);
+
+                        return [
+                            'year' => $year,
+                            'month' => $month,
+                            'day' => $day,
+                            'hour' => $hour,
+                            'minute' => $minute,
+                            'second' => $second,
+                            'microsecond' => $microsecond,
+                        ];
+                    }
                 }
             }
         }
