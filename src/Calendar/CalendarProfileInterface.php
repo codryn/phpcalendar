@@ -12,6 +12,21 @@ namespace Codryn\PHPCalendar\Calendar;
 interface CalendarProfileInterface
 {
     /**
+     * Set locale for localized names
+     *
+     * @param string $locale Locale code (e.g., 'en-us', 'de', 'fr', 'es', 'it')
+     * @return void
+     */
+    public function setLocale(string $locale): void;
+
+    /**
+     * Get current locale
+     *
+     * @return string Locale code
+     */
+    public function getLocale(): string;
+
+    /**
      * Get profile identifier (e.g., 'gregorian', 'faerun')
      *
      * @return string Profile name

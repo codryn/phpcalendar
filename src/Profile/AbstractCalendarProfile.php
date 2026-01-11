@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Codryn\PHPCalendar\Profile;
 
 use Codryn\PHPCalendar\Calendar\CalendarProfileInterface;
+use Codryn\PHPCalendar\Locale\Locale;
 
 /**
  * Base class for calendar profile implementations
@@ -13,6 +14,27 @@ use Codryn\PHPCalendar\Calendar\CalendarProfileInterface;
  */
 abstract class AbstractCalendarProfile implements CalendarProfileInterface
 {
+    /**
+     * Current locale for this profile
+     */
+    protected string $locale = Locale::DEFAULT_LOCALE;
+
+    /**
+     * @inheritDoc
+     */
+    public function setLocale(string $locale): void
+    {
+        $this->locale = Locale::normalize($locale);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
     /**
      * @inheritDoc
      */

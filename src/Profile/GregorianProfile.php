@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Profile;
 
+use Codryn\PHPCalendar\Locale\GregorianTranslations;
+
 /**
  * Gregorian Calendar Profile
  *
@@ -24,7 +26,7 @@ final class GregorianProfile extends AbstractCalendarProfile
      */
     public function getDisplayName(): string
     {
-        return 'Gregorian Calendar';
+        return GregorianTranslations::getDisplayName($this->locale);
     }
 
     /**
@@ -32,20 +34,7 @@ final class GregorianProfile extends AbstractCalendarProfile
      */
     public function getMonthNames(): array
     {
-        return [
-            1 => 'January',
-            2 => 'February',
-            3 => 'March',
-            4 => 'April',
-            5 => 'May',
-            6 => 'June',
-            7 => 'July',
-            8 => 'August',
-            9 => 'September',
-            10 => 'October',
-            11 => 'November',
-            12 => 'December',
-        ];
+        return GregorianTranslations::getMonthNames($this->locale);
     }
 
     /**
@@ -92,10 +81,7 @@ final class GregorianProfile extends AbstractCalendarProfile
      */
     public function getEpochNotation(): array
     {
-        return [
-            'before' => 'BCE',
-            'after' => 'CE',
-        ];
+        return GregorianTranslations::getEpochNotation($this->locale);
     }
 
     /**

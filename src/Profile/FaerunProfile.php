@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Profile;
 
+use Codryn\PHPCalendar\Locale\FaerunTranslations;
+
 /**
  * Faerûn (Harptos Calendar) Profile
  *
@@ -26,7 +28,7 @@ final class FaerunProfile extends AbstractCalendarProfile
      */
     public function getDisplayName(): string
     {
-        return 'Faerûn (Harptos Calendar)';
+        return FaerunTranslations::getDisplayName($this->locale);
     }
 
     /**
@@ -34,20 +36,7 @@ final class FaerunProfile extends AbstractCalendarProfile
      */
     public function getMonthNames(): array
     {
-        return [
-            1 => 'Hammer',
-            2 => 'Alturiak',
-            3 => 'Ches',
-            4 => 'Tarsakh',
-            5 => 'Mirtul',
-            6 => 'Kythorn',
-            7 => 'Flamerule',
-            8 => 'Eleasis',
-            9 => 'Eleint',
-            10 => 'Marpenoth',
-            11 => 'Uktar',
-            12 => 'Nightal',
-        ];
+        return FaerunTranslations::getMonthNames($this->locale);
     }
 
     /**
@@ -73,10 +62,7 @@ final class FaerunProfile extends AbstractCalendarProfile
      */
     public function getEpochNotation(): array
     {
-        return [
-            'before' => 'Before DR',
-            'after' => 'DR',
-        ];
+        return FaerunTranslations::getEpochNotation($this->locale);
     }
 
     /**
@@ -106,32 +92,6 @@ final class FaerunProfile extends AbstractCalendarProfile
      */
     public function getNamelessDays(): array
     {
-        return [
-            [
-                'position' => 1, // After Hammer
-                'names' => [1 => 'Midwinter'],
-                'leap' => false,
-            ],
-            [
-                'position' => 4, // After Tarsakh
-                'names' => [1 => 'Greengrass'],
-                'leap' => false,
-            ],
-            [
-                'position' => 7, // After Flamerule
-                'names' => [1 => 'Midsummer'],
-                'leap' => true, // Shieldmeet follows Midsummer in leap years
-            ],
-            [
-                'position' => 9, // After Eleint
-                'names' => [1 => 'Highharvestide'],
-                'leap' => false,
-            ],
-            [
-                'position' => 11, // After Uktar
-                'names' => [1 => 'Feast of the Moon'],
-                'leap' => false,
-            ],
-        ];
+        return FaerunTranslations::getNamelessDays($this->locale);
     }
 }

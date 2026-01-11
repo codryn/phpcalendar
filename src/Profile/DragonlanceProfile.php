@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Profile;
 
+use Codryn\PHPCalendar\Locale\DragonlanceTranslations;
+
 /**
  * Dragonlance Calendar Profile
  *
@@ -33,25 +35,12 @@ final class DragonlanceProfile extends AbstractCalendarProfile
 
     public function getDisplayName(): string
     {
-        return 'Dragonlance (Krynn Calendar)';
+        return DragonlanceTranslations::getDisplayName($this->locale);
     }
 
     public function getMonthNames(): array
     {
-        return [
-            1 => 'Winter Deep',
-            2 => 'Winter Wane',
-            3 => 'Spring Dawning',
-            4 => 'Spring Rain',
-            5 => 'Spring Bloom',
-            6 => 'Summer Home',
-            7 => 'Summer Run',
-            8 => 'Summer End',
-            9 => 'Autumn Harvest',
-            10 => 'Autumn Twilight',
-            11 => 'Autumn Dark',
-            12 => 'Winter Come',
-        ];
+        return DragonlanceTranslations::getMonthNames($this->locale);
     }
 
     public function getDaysInMonth(int $month, int $year): int
@@ -74,10 +63,7 @@ final class DragonlanceProfile extends AbstractCalendarProfile
 
     public function getEpochNotation(): array
     {
-        return [
-            'before' => 'PC',
-            'after' => 'AC',
-        ];
+        return DragonlanceTranslations::getEpochNotation($this->locale);
     }
 
     public function getFormatPatterns(): array
