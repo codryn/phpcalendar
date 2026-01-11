@@ -163,8 +163,10 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                     }
                     
                     if ($days < $namelessCount) {
-                        // We're in the nameless days - treat as being in previous month's last day
-                        // This is a simplification for now
+                        // We're in a nameless day period.
+                        // Nameless days don't belong to any specific month, so we represent them
+                        // as being in the previous month's last day for display purposes.
+                        // The important thing is that the calculations account for these days.
                         $month = $m - 1;
                         if ($month < 1) {
                             $month = $monthCount;
@@ -204,7 +206,12 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                 }
                 
                 if ($days < $namelessCount) {
-                    // We're in the nameless days at the end - treat as being in last month's last day
+                    // We're in the nameless days at the end of the year.
+                    // Nameless days don't belong to any specific month, so we represent them
+                    // as being in the last month's last day for display purposes.
+                    // This is acceptable because nameless days are primarily used for
+                    // calculation purposes (year length, date differences) rather than
+                    // for specific date representation.
                     $month = $monthCount;
                     $day = $this->getDaysInMonth($month, $year);
                     

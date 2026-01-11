@@ -77,6 +77,9 @@ final class DSAProfile extends AbstractCalendarProfile
         ];
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getNamelessDays(): array
     {
         return [
