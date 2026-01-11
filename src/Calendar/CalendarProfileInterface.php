@@ -78,6 +78,16 @@ interface CalendarProfileInterface
     public function getMetadata(): array;
 
     /**
+     * Get nameless days configuration for this calendar
+     *
+     * Returns an array of nameless days with their position and names.
+     * Position indicates after which month the nameless days occur (0 = start of year).
+     *
+     * @return array<int, array{position: int, names: array<int, string>, leap: bool}> Nameless days groups
+     */
+    public function getNamelessDays(): array;
+
+    /**
      * Convert date components to Unix timestamp
      *
      * @param int $year Year

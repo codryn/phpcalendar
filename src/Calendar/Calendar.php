@@ -193,28 +193,18 @@ final class Calendar
      */
     private function toSeconds(TimePoint $point): int
     {
-        // Simple approximation: calculate days since epoch then convert to seconds
-        $days = 0;
+        // Use the calendar profile's dateToSeconds method which handles nameless days
+        $totalSeconds = $this->profile->dateToSeconds(
+            $point->getYear(),
+            $point->getMonth(),
+            $point->getDay(),
+            $point->getHour(),
+            $point->getMinute(),
+            $point->getSecond(),
+            $point->getMicrosecond()
+        );
 
-        // Add days for years
-        for ($y = 1; $y < $point->getYear(); $y++) {
-            $days += $this->isLeapYear($y) ? 366 : 365;
-        }
-
-        // Add days for months
-        for ($m = 1; $m < $point->getMonth(); $m++) {
-            $days += $this->getDaysInMonth($m, $point->getYear());
-        }
-
-        // Add days
-        $days += $point->getDay() - 1; // -1 because day 1 is the start
-
-        $seconds = $days * 86400;
-        $seconds += $point->getHour() * 3600;
-        $seconds += $point->getMinute() * 60;
-        $seconds += $point->getSecond();
-
-        return $seconds;
+        return (int) $totalSeconds;
     }
 
     /**
