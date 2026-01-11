@@ -10,16 +10,17 @@ A powerful, type-safe calendar system for PHP supporting both real-world (Gregor
 
 ## Features
 
-- 🗓️ **7 Built-in Calendar Profiles**: Gregorian + 6 fantasy RPG calendars (Faerûn, Golarion, DSA, Eberron, Dragonlance, Greyhawk)
-- 🌍 **Internationalization**: Support for 5 languages (English, German, French, Spanish, Italian) for month names, epochs, and calendar names
-- 📅 **Flexible Date Parsing**: Parse dates from natural language and various formats
-- 🎨 **Customizable Formatting**: Format dates with custom patterns
-- ⏱️ **Date Arithmetic**: Add/subtract time spans, calculate differences between dates
-- 🎯 **Custom Calendar Support**: Create your own calendars with custom months, days, and leap year rules
-- 🔒 **Type Safe**: PHP 8.1+ with strict types and PHPStan level 10 strict compliance
-- ✅ **Thoroughly Tested**: 65+ tests with comprehensive acceptance, unit, and integration coverage
-- 📦 **Zero Dependencies**: No external runtime requirements
-- 🛡️ **PSR-12 Compliant**: Clean, maintainable code following PHP standards
+- **🗓️ Built-in Calendar Profiles**: Gregorian + fantasy RPG calendars (Faerûn, Golarion, DSA, Eberron, Dragonlance, Greyhawk, ...)
+- **🌍 Internationalization**: Support for different languages (English, German, French, Spanish, Italian, ...) for month names, epochs, and calendar names
+- **📅 Flexible Date Parsing**: Parse dates from natural language and various formats
+- **🎨 Customizable Formatting**: Format dates with custom patterns
+- **⏱️ Date Arithmetic**: Add/subtract time spans, calculate differences between dates
+- **🎯 Custom Calendar Support**: Create your own calendars with custom months, days, and leap year rules
+- **❗ Error Handling**: Clear, specific error messages with location information
+- **🔒 Type Safe**: Full PHP 8.1+ type declarations and strict mode
+- **⚡ Zero Dependencies**: Pure PHP 8.1+ implementation using only stdlib
+- **🧪 Well Tested**: Unit tests with comprehensive coverage
+- **📦 PSR-12 Compliant**: Modern PHP coding standards
 
 ## Requirements
 
