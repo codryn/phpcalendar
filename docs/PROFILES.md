@@ -61,6 +61,8 @@ echo $calendar->getDaysInMonth(2, 2024); // 29
 
 ## Fantasy Calendars
 
+**Important Notice:** All fantasy RPG calendar profiles include copyright notices accessible via the `getCopyrightNotice()` method on the profile. These notices acknowledge that the calendar names, month names, and associated terminology are the property of their respective owners and are used solely for non-commercial purposes to help game masters and players keep track of their campaigns.
+
 ### Faerûn (Forgotten Realms)
 
 **Profile Name:** `faerun`
@@ -74,6 +76,7 @@ The Harptos calendar system used in the Forgotten Realms D&D setting.
 - **Days per Year:** 365 (366 with Shieldmeet)
 - **Leap Year Rule:** Every 4 years (Shieldmeet is added)
 - **Epoch Notation:** DR (Dale Reckoning)
+- **Copyright:** Calendar names and terminology are property of Wizards of the Coast LLC
 
 #### Month Structure
 
@@ -140,6 +143,7 @@ The Absalom Reckoning calendar from Pathfinder RPG's Golarion setting.
 - **Days per Year:** 365 (366 in leap years)
 - **Leap Year Rule:** Every 8 years
 - **Epoch Notation:** AR (Absalom Reckoning)
+- **Copyright:** Calendar names and terminology are property of Paizo Inc.
 
 #### Month Structure
 
@@ -186,6 +190,7 @@ The Aventurian calendar from Das Schwarze Auge (The Dark Eye) RPG.
 - **Days per Year:** 365 (always constant)
 - **Leap Year Rule:** None (no leap years)
 - **Epoch Notation:** BF (Bosparans Fall)
+- **Copyright:** Calendar names and terminology are property of Ulisses Spiele GmbH
 
 #### Month Structure
 
@@ -245,6 +250,7 @@ The Galifar Calendar from D&D's Eberron setting.
 - **Days per Year:** 336 (always constant)
 - **Leap Year Rule:** None (no leap years)
 - **Epoch Notation:** YK (Years of Kingdom)
+- **Copyright:** Calendar names and terminology are property of Wizards of the Coast LLC
 
 #### Month Structure
 
@@ -295,6 +301,7 @@ The Krynn calendar from D&D's Dragonlance setting.
 - **Days per Year:** 365 (366 in leap years)
 - **Leap Year Rule:** Gregorian rules (divisible by 4, except centuries unless divisible by 400)
 - **Epoch Notation:** PC (Pre-Cataclysm) / AC (After Cataclysm)
+- **Copyright:** Calendar names and terminology are property of Wizards of the Coast LLC
 
 #### Month Structure
 
@@ -342,6 +349,7 @@ The Common Year calendar from D&D's World of Greyhawk.
 - **Days per Year:** 364 (always constant)
 - **Leap Year Rule:** None (no leap years)
 - **Epoch Notation:** CY (Common Year)
+- **Copyright:** Calendar names and terminology are property of Wizards of the Coast LLC
 
 #### Month Structure
 
