@@ -2,43 +2,85 @@
 
 Thank you for your interest in contributing to PHPCalendar! This document provides guidelines for development setup, testing, and code standards.
 
-## Development Setup
+## Code of Conduct
+
+This project follows a simple code of conduct:
+
+- **Be respectful**: Treat all contributors with respect and professionalism
+- **Be constructive**: Provide helpful feedback and suggestions
+- **Be collaborative**: Work together to improve the project
+- **Be inclusive**: Welcome contributors of all backgrounds and skill levels
+
+## Getting Started
 
 ### Prerequisites
 
-- PHP 8.1 or higher
-- Composer
-- Git
+- **PHP 8.1+** (strict requirement)
+- **Composer** for dependency management
+- **Git** for version control
+- Recommended: VS Code with devcontainer and PHP extensions
 
-### Installation
+### Initial Setup
 
-1. Clone the repository:
+1. **Clone**
    ```bash
    git clone https://github.com/codryn/phpcalendar.git
    cd phpcalendar
    ```
 
-2. Install dependencies:
+Note: Its is recommended to use the proviced vs code devcontainer for consistent environment. Please refere to https://code.visualstudio.com/docs/devcontainers/containers for more information.
+
+2. **Install dependencies**
    ```bash
    composer install
    ```
 
-3. Verify installation:
+3. **Verify installation**
    ```bash
-   composer test
+   composer test        # Run all tests
+   composer analyse     # Run static analysis
+   composer cs-check    # Check code style
    ```
 
-## Code Standards
+4. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-### PSR-12 Compliance
+## Development Workflow
 
-All code must follow [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standards. We use PHP-CS-Fixer to enforce this:
+### 1. Test-Driven Development (TDD)
+
+PHPCalendar follows strict TDD practices:
+
+1. **Write tests first** before implementing features
+2. **Run tests** to see them fail (red)
+3. **Implement** the minimum code to pass (green)
+4. **Refactor** while keeping tests green
+5. **Repeat** for each feature increment
+
+### Running Tests
 
 ```bash
-composer cs-fix
-```
+# Run all tests
+composer test
 
-Before committing, always run the fixer to ensure compliance.
+# Run with coverage and HTML report
+composer test-coverage-html
+
+### Code Quality
+
+```bash
+# PSR-12 compliance check and fix
+composer cs-check
+composer cs-fix
+
+# Static analysis (PHPStan 2.1 level 10 strict)
+composer analyse
+
+# Run all quality checks
+composer ci
+```
 
 ### Strict Types
 
@@ -75,123 +117,6 @@ public function isValid(int $year, bool $strict = false): bool
 }
 ```
 
-## Testing
-
-### Test-Driven Development
-
-PHPCalendar follows TDD principles:
-
-1. Write tests first (Red)
-2. Implement code to pass tests (Green)
-3. Refactor while keeping tests green (Refactor)
-
-### Running Tests
-
-Run the full test suite:
-
-```bash
-composer test
-```
-
-Run specific test suites:
-
-```bash
-composer test:unit       # Unit tests only
-composer test:integration # Integration tests only
-composer test:acceptance  # Acceptance tests only
-```
-
-Run tests with coverage:
-
-```bash
-composer test:coverage
-```
-
-### Test Organization
-
-- **Unit Tests** (`tests/Unit/`): Test individual classes in isolation
-- **Integration Tests** (`tests/Integration/`): Test multiple components together
-- **Acceptance Tests** (`tests/Acceptance/`): Test user stories end-to-end
-
-### Writing Tests
-
-- Use descriptive test method names: `testCreateGregorianCalendarWithCorrectProperties()`
-- Follow Arrange-Act-Assert pattern
-- One assertion concept per test
-- Use data providers for testing multiple scenarios
-
-## Static Analysis
-
-We use PHPStan 2.1 at level 10 (strict) with strict rules:
-
-```bash
-composer analyse
-```
-
-All code must pass PHPStan analysis without errors before merging.
-
-## Quality Checks
-
-Run all quality checks at once:
-
-```bash
-composer ci
-```
-
-This runs:
-1. PHP-CS-Fixer (code style)
-2. PHPStan (static analysis)
-3. PHPUnit (full test suite with coverage)
-
-## Pull Request Process
-
-1. **Fork** the repository
-2. **Create a feature branch** from `main`:
-   ```bash
-   git checkout -b feature/my-new-feature
-   ```
-
-3. **Write tests** for your changes (TDD)
-
-4. **Implement** your changes
-
-5. **Ensure quality checks pass**:
-   ```bash
-   composer ci
-   ```
-
-6. **Commit** with clear, descriptive messages:
-   ```bash
-   git commit -m "Add support for custom epoch notations"
-   ```
-
-7. **Push** to your fork:
-   ```bash
-   git push origin feature/my-new-feature
-   ```
-
-8. **Open a Pull Request** with:
-   - Clear description of changes
-   - Reference to any related issues
-   - Test coverage report
-   - Breaking changes noted
-
-## Code Review Guidelines
-
-### For Contributors
-
-- Respond to feedback promptly
-- Keep PRs focused and reasonably sized
-- Update tests when changing functionality
-- Maintain backward compatibility when possible
-
-### For Reviewers
-
-- Be respectful and constructive
-- Focus on code quality and maintainability
-- Check test coverage
-- Verify documentation is updated
-
 ## Adding New Calendar Profiles
 
 When adding a new calendar profile:
@@ -220,23 +145,172 @@ final class MyCalendarProfile extends AbstractCalendarProfile
 }
 ```
 
+## Testing Requirements
+
+### Test Coverage
+
+- **Target overall coverage**: 80%+
+- **Critical paths**: 100% coverage required
+  - All public methods
+  - Error handling paths
+  - Edge cases
+
+### Test Organization
+
+```
+tests/
+├── Acceptance/      # Acceptance tests for user stories
+├── Contract/        # API Contract tests (planned)
+├── Unit/            # Unit tests (isolated, fast)
+└── Integration/     # Integration tests (end-to-end)
+```
+
+### Writing Tests
+
+See existing tests for examples. Key guidelines:
+- Use descriptive test method names: `testCreateGregorianCalendarWithCorrectProperties()`
+- Follow Arrange-Act-Assert pattern
+- One assertion concept per test
+- Use data providers for testing multiple scenarios
+
+## Pull Request Process
+
+### Before Submitting
+
+1. **Run all checks**
+   ```bash
+   composer ci
+   ```
+
+2. **Update documentation**
+   - Update README.md if needed
+   - Add/update API documentation
+   - Update CHANGELOG.md
+
+3. **Write a clear PR description**
+   - What: Brief summary of changes
+   - Why: Reason for the change
+   - How: Technical approach
+   - Testing: How you tested the change
+
+### PR Checklist
+
+- [ ] Tests added/updated and passing
+- [ ] PHPStan 2.1 Level 10 Strict passes
+- [ ] PSR-12 code style applied
+- [ ] All files have `declare(strict_types=1)`
+- [ ] Documentation updated
+- [ ] CHANGELOG.md updated (for features/fixes)
+- [ ] No merge conflicts
+- [ ] Commit messages are clear and descriptive
+
+### Commit Message Format
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+**Types:**
+- `feature`: New feature
+- `bug`: Bug fix
+- `task`: Any other change
+
+**Example:**
+```
+feature/savage-world: Add exploding dice support for Savage Worlds
+
+Implement explosion mechanic where dice roll again on max value.
+Configurable explosion limit prevents infinite loops.
+
+Closes #42
+```
+
+## Code Review Guidelines
+
+### For Contributors
+
+- Respond to feedback promptly
+- Keep PRs focused and reasonably sized
+- Update tests when changing functionality
+- Maintain backward compatibility when possible
+
+### For Reviewers
+
+- Be respectful and constructive
+- Focus on code quality and maintainability
+- Check test coverage
+- Verify documentation is updated
+
+## Project Structure
+
+```
+phpcalendar/
+├── docs/                        # Documentation
+├── examples/                    # Example code
+├── scripts/                     # Scripts and utilities
+├── specs/                       # Specification files, organized by iteration (github spec kit)
+├── src/
+│   ├── Calendar/                # Calendar-related classes
+│   ├── Exceptions/              # Custom exceptions
+│   ├── Locale/                  # Localization classes
+│   ├── Parser/                  # Parsing utilities
+│   └── Profile/                 # Calendar profile implementations
+│   └── Validator/               #  Validation classes
+├── tests/                       # Test cases
+├── .php-cs-fixer.php            # Code style config
+├── phpstan.neon                 # Static analysis config
+├── phpunit.xml                  # Test configuration
+├── composer.json                # Dependencies
+└── README.md                    # Main documentation
+```
+
+## Development Commands
+
+```bash
+# Testing
+composer test               # Run all tests
+composer test-coverage      # Generate coverage report
+composer test-coverage-html # Generate HTML coverage report
+# Code Quality
+composer analyse           # Static analysis
+composer cs-check          # Check code style
+composer cs-fix            # Fix code style
+# Combined
+composer ci                # Run all CI checks (test + analyse + cs-check)
+```
+
 ## Documentation
 
-When adding or modifying features:
+### README Updates
 
-- Update README.md with usage examples
-- Add or update API documentation in `docs/`
-- Update CHANGELOG.md following [Keep a Changelog](https://keepachangelog.com/)
-- Include inline code comments for complex logic
+Update `README.md` for:
+
+- New features visible to users
+- Installation changes
+- Breaking changes
+- New initiative model support
+
+### Code Comments
+
+- **Public APIs**: Always include PHPDoc
+- **Complex logic**: Explain why, not what
+- **Algorithms**: Reference sources or papers
+- **Workarounds**: Document why they exist
+
+## Getting Help
+
+- **Issues**: [GitHub Issues](https://github.com/marcowuelser/phpcalendar/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/marcowuelser/phpcalendar/discussions)
+- **Questions**: Open a discussion or issue
 
 ## License
 
-By contributing to PHPCalendar, you agree that your contributions will be licensed under the MIT License.
+By contributing to PHPCalendar, you agree that your contributions will be licensed under the same license as the project (see LICENSE file).
 
-## Questions?
+---
 
-- Open an issue for bugs or feature requests
-- Start a discussion for questions or ideas
-- Contact maintainers for security issues
-
-Thank you for contributing to PHPCalendar!
+**Thank you for contributing to PHPCalendar!** 🎲

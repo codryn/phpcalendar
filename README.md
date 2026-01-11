@@ -1,4 +1,4 @@
-# PHP Calendar
+# PHPCalendar
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.1--8.5-blue.svg)](https://www.php.net/)
 [![PHPStan Level 10](https://img.shields.io/badge/PHPStan-level%2010-brightgreen.svg)](https://phpstan.org/)
@@ -6,7 +6,9 @@
 [![Latest Stable Version](https://poser.pugx.org/codryn/phpcalendar/v/stable)](https://packagist.org/packages/codryn/phpcalendar)
 [![License](https://poser.pugx.org/codryn/phpcalendar/license)](https://packagist.org/packages/codryn/phpcalendar)
 
-A powerful, type-safe calendar system for PHP supporting both real-world (Gregorian) and fantasy setting calendars. Perfect for RPG applications, game development, and custom calendar implementations.
+> RPG Calendar System for PHP - Gregorian & Fantasy Calendars with Internationalization
+
+**PHPCalendar** is a powerful, type-safe calendar system for PHP supporting both real-world (Gregorian) and fantasy setting calendars. Perfect for RPG applications, game development, and custom calendar implementations.
 
 ## Features
 
@@ -33,7 +35,7 @@ A powerful, type-safe calendar system for PHP supporting both real-world (Gregor
 composer require codryn/phpcalendar
 ```
 
-## Quick Start
+## Quick Start and Usage
 
 ```php
 use Codryn\PHPCalendar\Calendar\Calendar;
@@ -340,48 +342,23 @@ Comprehensive documentation is available:
 
 ## Development
 
-### Setup
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
-```bash
-# Clone the repository
-git clone https://github.com/codryn/phpcalendar.git
-cd phpcalendar
+## Architecture
 
-# Install dependencies
-composer install
-```
+PHPCalendar is structured around key components:
+- **Calendar**: Main class for calendar operations
+- **CalendarProfile**: Defines calendar rules and metadata
+- **TimePoint**: Represents specific dates in a calendar
+- **TimeSpan**: Represents time intervals for date arithmetic
 
-### Running Tests
+## Performance
 
-```bash
-# Run full test suite (65 tests, 290 assertions)
-composer test
+TODO: Add performance benchmarks and optimizations.
 
-# Run specific test suites
-composer test -- --testsuite=Acceptance
-composer test -- --testsuite=Unit
-composer test -- --testsuite=Integration
+## Quality Standards
 
-# Generate code coverage report
-composer test-coverage
-```
-
-### Code Quality
-
-```bash
-# Run PHPStan (level 10 - strict)
-composer analyse
-
-# Check PSR-12 compliance
-composer cs-check
-
-# Auto-fix code style issues
-composer cs-fix
-```
-
-### Quality Standards
-
-- ✅ **PHPStan Level 9**: Strictest static analysis
+- ✅ **PHPStan Level 10**: Strictest static analysis level from PHPSTan 2.1
 - ✅ **PSR-12**: PHP coding standards compliance
 - ✅ **Strict Types**: `declare(strict_types=1)` in all files
 - ✅ **TDD**: Test-driven development methodology
@@ -390,26 +367,15 @@ composer cs-fix
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
-
-- Development setup
-- Coding standards (PSR-12, PHPStan 2.1 level 10 strict)
-- Testing requirements (TDD, >90% coverage)
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Development workflow
+- Coding standards
+- Testing requirements
 - Pull request process
-- Adding new calendar profiles
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
-
-## Credits
-
-Created and maintained by Codryn.
-
-Special thanks to:
-- The PHP community
-- Contributors to fantasy RPG calendar systems
-- PHPUnit, PHPStan, and PHP-CS-Fixer maintainers
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
@@ -420,4 +386,21 @@ See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
 - 📖 [Documentation](docs/)
 - 🐛 [Issue Tracker](https://github.com/codryn/phpcalendar/issues)
 - 💬 [Discussions](https://github.com/codryn/phpcalendar/discussions)
-- 📧 [Email](mailto:codryn@example.com)
+- 📧 [Email](mailto:info@codryn.com)
+
+## Credits
+
+Created and maintained by Marco for [Codryn](https://codryn.com).
+
+Special thanks to:
+- The PHP community
+- Contributors to fantasy RPG calendar systems
+- PHPUnit, PHPStan, and PHP-CS-Fixer maintainers
+
+### Game Systems Copyright
+
+This library implements calendars from various tabletop RPG systems for non-commercial use. All game system names, mechanics, and related intellectual property remain the property of their respective copyright holders. See [GAME_SYSTEMS_COPYRIGHT.md](GAME_SYSTEMS_COPYRIGHT.md) for detailed copyright notices and attributions.
+
+---
+
+Built for the tabletop RPG community 🎲
