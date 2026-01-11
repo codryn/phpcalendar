@@ -7,18 +7,18 @@
 
 ## Summary
 
-Deliver a professionally maintained PHP Composer package (codryn/phpcalendar) that provides a configurable calendar system supporting both real-world (Gregorian) and fantasy setting calendars (Faerûn, Golarion, DSA, Eberron, Dragonlance, Greyhawk). The system enables date parsing/formatting, temporal arithmetic with TimeSpan calculations, and custom calendar creation. Built with PHP 8.0+ compatibility, strict PSR-12 compliance, comprehensive PHPUnit test coverage following TDD methodology, and strict static analysis (PHPStan/Psalm).
+Deliver a professionally maintained PHP Composer package (codryn/phpcalendar) that provides a configurable calendar system supporting both real-world (Gregorian) and fantasy setting calendars (Faerûn, Golarion, DSA, Eberron, Dragonlance, Greyhawk). The system enables date parsing/formatting, temporal arithmetic with TimeSpan calculations, and custom calendar creation. Built with PHP 8.1+ compatibility, strict PSR-12 compliance, comprehensive PHPUnit test coverage following TDD methodology, and strict static analysis (PHPStan/Psalm).
 
 ## Technical Context
 
-**Language/Version**: PHP 8.0 minimum, PHP 8.3 development target (maintain backward compatibility to PHP 8.0)
+**Language/Version**: PHP 8.1 minimum, PHP 8.5 development target (maintain backward compatibility to PHP 8.1)
 **Primary Dependencies**: None for core library (zero-dependency design), PHPUnit for testing, PHP_CodeSniffer/PHP-CS-Fixer for PSR-12, PHPStan or Psalm for static analysis
 **Storage**: N/A (in-memory value objects, no persistence layer)
-**Testing**: PHPUnit 9.5+ (compatible with PHP 8.0+) with comprehensive unit and integration test coverage
-**Target Platform**: Cross-platform PHP (Linux, macOS, Windows) - library targets any PHP 8.0+ environment
+**Testing**: PHPUnit 9.5+ (compatible with PHP 8.1+) with comprehensive unit and integration test coverage
+**Target Platform**: Cross-platform PHP (Linux, macOS, Windows) - library targets any PHP 8.1+ environment
 **Project Type**: Single Composer library package (codryn/phpcalendar)
 **Performance Goals**: Date arithmetic <10ms for typical operations (spans <1000 years), parsing/formatting <5ms per operation
-**Constraints**: PHP 8.0 compatibility (no PHP 8.1+ exclusive features like readonly, enums in implementation), timezone-agnostic design, no external dependencies for core
+**Constraints**: PHP 8.1 compatibility (no PHP 8.1+ exclusive features like readonly, enums in implementation), timezone-agnostic design, no external dependencies for core
 **Scale/Scope**: Library for 7+ calendar profiles, support dates 10,000 BCE to 10,000 CE, handle RPG campaign timelines and historical date calculations
 
 ## Constitution Check
@@ -29,8 +29,8 @@ Deliver a professionally maintained PHP Composer package (codryn/phpcalendar) th
 - [x] **Composer Package Readiness**: Feature integrates with codryn/phpcalendar package structure - Confirmed: designed as standalone Composer package with proper namespace
 - [x] **PSR-12 Compliance**: All code will adhere to PSR-12 Extended Coding Style - Confirmed: PHP-CS-Fixer/PHP_CodeSniffer configured in Phase 1
 - [x] **TDD Approach**: Acceptance tests defined first, implementation follows test-first methodology - Confirmed: 22 testable acceptance scenarios defined in spec.md
-- [x] **Static Analysis**: PHPStan/Psalm strict level compatibility verified - Confirmed: PHPStan level 9 or Psalm strict mode to be configured
-- [x] **Type Safety**: All code uses strict_types=1 and comprehensive type declarations - Confirmed: PHP 8.0+ type system with strict declarations
+- [x] **Static Analysis**: PHPStan/Psalm strict level compatibility verified - Confirmed: PHPStan level 10 strict to be configured
+- [x] **Type Safety**: All code uses strict_types=1 and comprehensive type declarations - Confirmed: PHP 8.1+ type system with strict declarations
 - [x] **Test Coverage**: PHPUnit tests will provide comprehensive coverage - Confirmed: PHPUnit 9.5+ with coverage reporting configured
 - [x] **Documentation**: User-facing documentation requirements identified - Confirmed: README, API docs, calendar profile docs required
 
@@ -38,8 +38,8 @@ Deliver a professionally maintained PHP Composer package (codryn/phpcalendar) th
 - [x] **Composer Package Structure**: Confirmed PSR-4 autoloading with `Codryn\\PHPCalendar` namespace, composer.json defined
 - [x] **PSR-12 Tooling**: .php-cs-fixer.php configuration researched and documented
 - [x] **TDD Test Structure**: tests/ organized by Unit/Integration/Acceptance matching user stories
-- [x] **Static Analysis Config**: phpstan.neon level 9 configuration researched and documented
-- [x] **Type Declarations**: All contracts specify strict types, union types (PHP 8.0), avoid 8.1+ features
+- [x] **Static Analysis Config**: phpstan.neon level 10 strict configuration researched and documented
+- [x] **Type Declarations**: All contracts specify strict types, union types (PHP 8.1), avoid 8.2+ features
 - [x] **Test Organization**: 5 acceptance test files mapped to 5 user stories, comprehensive unit tests for all classes
 - [x] **Documentation Deliverables**: quickstart.md created, 3 API contracts written (Calendar, TimePoint, TimeSpan), data model documented
 

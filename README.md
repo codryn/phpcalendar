@@ -16,14 +16,15 @@ A powerful, type-safe calendar system for PHP supporting both real-world (Gregor
 - 🎨 **Customizable Formatting**: Format dates with custom patterns
 - ⏱️ **Date Arithmetic**: Add/subtract time spans, calculate differences between dates
 - 🎯 **Custom Calendar Support**: Create your own calendars with custom months, days, and leap year rules
-- 🔒 **Type Safe**: PHP 8.0+ with strict types and PHPStan level 9 compliance
+- 🔒 **Type Safe**: PHP 8.1+ with strict types and PHPStan level 10 strict compliance
 - ✅ **Thoroughly Tested**: 65+ tests with comprehensive acceptance, unit, and integration coverage
 - 📦 **Zero Dependencies**: No external runtime requirements
 - 🛡️ **PSR-12 Compliant**: Clean, maintainable code following PHP standards
 
 ## Requirements
 
-- PHP 8.0 or higher
+- PHP 8.1 or higher
+- No additional PHP extensions required
 
 ## Installation
 
@@ -367,7 +368,7 @@ composer test-coverage
 ### Code Quality
 
 ```bash
-# Run PHPStan (level 9 - strictest)
+# Run PHPStan (level 10 - strict)
 composer analyse
 
 # Check PSR-12 compliance
@@ -391,7 +392,7 @@ composer cs-fix
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
 
 - Development setup
-- Coding standards (PSR-12, PHPStan level 9)
+- Coding standards (PSR-12, PHPStan 2.1 level 10 strict)
 - Testing requirements (TDD, >90% coverage)
 - Pull request process
 - Adding new calendar profiles

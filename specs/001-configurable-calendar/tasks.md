@@ -25,12 +25,12 @@
 
 **Purpose**: Project initialization and basic structure per constitution requirements
 
-- [X] T001 Create composer.json with PHP 8.0+ requirement and PSR-4 autoloading for Codryn\\PHPCalendar namespace
+- [X] T001 Create composer.json with PHP ^8.1 requirement and PSR-4 autoloading for Codryn\\PHPCalendar namespace
 - [X] T002 [P] Create directory structure: src/{Calendar,Profile,Parser,Validator,Exception}, tests/{Unit,Integration,Acceptance}
 - [X] T003 [P] Configure PHPUnit 9.5+ in phpunit.xml with coverage reporting and test suites (Unit, Integration, Acceptance)
 - [X] T004 [P] Configure PHP-CS-Fixer in .php-cs-fixer.php for PSR-12 compliance with strict_types enforcement
-- [X] T005 [P] Configure PHPStan level 9 in phpstan.neon with strictRules for all PHP 8.0 compatible checks
-- [X] T006 [P] Create GitHub Actions workflow .github/workflows/ci.yml for PHP 8.0/8.1/8.2/8.3 matrix testing
+- [X] T005 [P] Configure PHPStan level 10 strict in phpstan.neon with strictRules for all PHP 8.1 compatible checks
+- [X] T006 [P] Create GitHub Actions workflow .github/workflows/ci.yml for PHP 8.1/8.2/8.3/8.4/8.5 matrix testing
 - [X] T007 Create README.md with installation, quickstart, and package badges
 - [X] T008 Create CHANGELOG.md following Keep a Changelog format
 
@@ -234,7 +234,7 @@
 
 - [X] T100 [P] Add type hints and PHPDoc blocks to all public methods with @param, @return, @throws annotations
 - [X] T101 [P] Run PHP-CS-Fixer and fix all PSR-12 violations across entire codebase
-- [X] T102 [P] Run PHPStan level 9 and resolve all errors/warnings
+- [X] T102 [P] Run PHPStan level 10 strict and resolve all errors/warnings
 - [X] T103 [P] Verify all files have `declare(strict_types=1);` at the top
 - [X] T104 Run full PHPUnit test suite and verify 100% of acceptance tests pass
 - [ ] T105 Generate code coverage report and verify >90% coverage for src/
@@ -324,8 +324,8 @@ T025 → T026 → T027 → T028
 **Constitution Compliance**:
 - ✅ PSR-12: Tasks for .php-cs-fixer.php config (T004) and validation (T101)
 - ✅ TDD: All user stories have tests written before implementation
-- ✅ Static Analysis: PHPStan level 9 config (T005) and validation (T102)
-- ✅ Type Safety: strict_types verification (T103), PHP 8.0 types throughout
+- ✅ Static Analysis: PHPStan level 10 strict config (T005) and validation (T102)
+- ✅ Type Safety: strict_types verification (T103), PHP 8.1 types throughout
 - ✅ Composer Package: Package setup (T001), Packagist registration (T112)
 - ✅ Documentation: README (T007, T109), API docs (T106), CONTRIBUTING (T107)
 
