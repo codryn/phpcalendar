@@ -1,7 +1,7 @@
 # Quickstart Guide: PHPCalendar
 
 **Package**: codryn/phpcalendar  
-**Minimum PHP**: 8.0  
+**Minimum PHP**: 8.1  
 **Installation**: `composer require codryn/phpcalendar`
 
 ## 5-Minute Quickstart

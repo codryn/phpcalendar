@@ -35,14 +35,14 @@ Initial public release of PHPCalendar - a type-safe, configurable calendar syste
 - **Greyhawk**: Common Year calendar from D&D Greyhawk (364-day year)
 
 **Developer Experience**
-- Full PHP 8.0+ type declarations with `strict_types` enabled
-- PHPStan level 9 compliance (strictest static analysis)
+- Full PHP 8.1+ type declarations with `strict_types` enabled
+- PHPStan level 10 compliance (strict)
 - PSR-12 code style compliance
 - Zero runtime dependencies
 - Comprehensive documentation (API, usage guide, profile reference, custom calendar guide)
 - 65 tests with 290 assertions (acceptance, unit, and integration suites)
 - 72.91% code coverage
-- GitHub Actions CI pipeline for PHP 8.0-8.3
+- GitHub Actions CI pipeline for PHP 8.1-8.5
 
 **Documentation**
 - Complete API documentation with method references and examples

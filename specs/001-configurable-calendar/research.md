@@ -6,26 +6,25 @@
 
 ## Research Tasks
 
-### 1. PHP 8.0 Compatibility Strategy
+### 1. PHP 8.1 Compatibility Strategy
 
-**Question**: How to maintain PHP 8.0 compatibility while developing in PHP 8.3?
+**Question**: How to maintain PHP 8.1 compatibility while developing in PHP 8.3?
 
-**Decision**: Use PHP 8.0 baseline features with conditional feature detection for development tooling
-
+**Decision**: Use PHP 8.1 baseline features with conditional feature detection for development tooling
 **Rationale**: 
-- PHP 8.0 introduced named arguments, union types, attributes, match expressions - sufficient for value objects
-- Avoid PHP 8.1+ exclusive features: readonly properties (use private with getters), enums (use constants/classes), never return type
-- Development tools (PHPUnit, PHPStan) can use PHP 8.3 while library code targets PHP 8.0
+- PHP 8.1 introduced readonly properties, enums, intersection types - sufficient for value objects
+- Avoid PHP 8.2+ exclusive features: readonly properties (use private with getters), enums (use constants/classes), never return type
+- Development tools (PHPUnit, PHPStan) can use PHP 8.3 while library code targets PHP 8.1
 
 **Alternatives considered**:
-- Target PHP 8.1+: Rejected - excludes users on LTS systems (Ubuntu 20.04 has PHP 7.4/8.0)
+- Target PHP < 8.2: Rejected - excludes users on LTS systems (Ubuntu 20.04 has PHP 7.4/8.0)
 - Use polyfills for 8.1 features: Rejected - adds complexity and dependencies
 
 **Implementation approach**:
-- composer.json: `"require": { "php": "^8.0" }`
-- Use union types and mixed type (PHP 8.0)
-- Avoid: readonly, enums, never, intersection types (PHP 8.1+)
-- CI tests against PHP 8.0, 8.1, 8.2, 8.3
+- composer.json: `"require": { "php": "^8.1" }`
+- Use union types and mixed type (PHP 8.1)
+- Avoid: readonly, enums, never, intersection types (PHP 8.2+)
+- CI tests against PHP 8.1, 8.2, 8.3, 8.4, 8.5
 
 ---
 
@@ -184,17 +183,17 @@ throw new IncompatibleCalendarException(
 
 **Question**: How to configure tooling for strict compliance?
 
-**Decision**: PHP-CS-Fixer for PSR-12, PHPStan level 9 for static analysis
+**Decision**: PHP-CS-Fixer for PSR-12, PHPStan level 10 strict for static analysis
 
 **Rationale**:
 - PHP-CS-Fixer: Actively maintained, auto-fixes PSR-12 violations, configurable
-- PHPStan level 9: Maximum strictness without experimental features, widely adopted
+- PHPStan level 10 strict: Maximum strictness without experimental features, widely adopted
 - Both integrate with CI/CD pipelines easily
 
 **Alternatives considered**:
 - PHP_CodeSniffer only: Rejected - reports but doesn't auto-fix
 - Psalm instead of PHPStan: Considered equivalent, PHPStan chosen for wider adoption
-- PHPStan level 8: Rejected - level 9 catches more edge cases
+- PHPStan level 8: Rejected - level 10 strict catches more edge cases
 
 **Configuration**:
 
@@ -280,12 +279,12 @@ parameters:
 
 All technical unknowns resolved:
 
-1. ✅ **PHP 8.0 Compatibility**: Target 8.0 features, test across 8.0-8.3
+1. ✅ **PHP 8.1 Compatibility**: Target 8.1 features, test across 8.1-8.5
 2. ✅ **TimeSpan Storage**: Total seconds + microseconds (int + int)
 3. ✅ **Profile Architecture**: Interface + abstract base + concrete profiles
 4. ✅ **Date Parsing**: Profile-defined patterns with fallback chain
 5. ✅ **Exception Strategy**: Specific exception classes with clear messages
-6. ✅ **Tooling**: PHP-CS-Fixer + PHPStan level 9
+6. ✅ **Tooling**: PHP-CS-Fixer + PHPStan level 10 strict
 7. ✅ **Fantasy Calendars**: Researched canonical systems for all 6 settings
 
 Ready to proceed to Phase 1 (Design).
