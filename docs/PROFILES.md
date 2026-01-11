@@ -69,33 +69,38 @@ The Harptos calendar system used in the Forgotten Realms D&D setting.
 
 #### Specifications
 
-- **Months:** 12 regular months + 5 festival days
+- **Months:** 12 regular months
+- **Festival Days:** 5 annual festivals (Midwinter, Greengrass, Midsummer, Highharvestide, Feast of the Moon) + Shieldmeet (leap years)
 - **Days per Year:** 365 (366 with Shieldmeet)
 - **Leap Year Rule:** Every 4 years (Shieldmeet is added)
 - **Epoch Notation:** DR (Dale Reckoning)
 
 #### Month Structure
 
-| Month | Name       | Days | Type    |
-|-------|------------|------|---------|
-| 1     | Hammer     | 30   | Month   |
-| 2     | Midwinter  | 1    | Festival|
-| 3     | Alturiak   | 30   | Month   |
-| 4     | Ches       | 30   | Month   |
-| 5     | Tarsakh    | 30   | Month   |
-| 6     | Greengrass | 1    | Festival|
-| 7     | Mirtul     | 30   | Month   |
-| 8     | Kythorn    | 30   | Month   |
-| 9     | Flamerule  | 30   | Month   |
-| 10    | Midsummer  | 1    | Festival|
-| 11    | (Shieldmeet)| 1   | Festival (Leap)|
-| 12    | Eleasis    | 30   | Month   |
-| 13    | Eleint     | 30   | Month   |
-| 14    | Highharvestide| 1 | Festival|
-| 15    | Marpenoth  | 30   | Month   |
-| 16    | Uktar      | 30   | Month   |
-| 17    | Feast of the Moon| 1| Festival|
-| 18    | Nightal    | 30   | Month   |
+| # | Name       | Days | Notes |
+|---|------------|------|-------|
+| 1 | Hammer     | 30   | |
+| - | *Midwinter* | 1 | Festival after Hammer |
+| 2 | Alturiak   | 30   | |
+| 3 | Ches       | 30   | |
+| 4 | Tarsakh    | 30   | |
+| - | *Greengrass* | 1 | Festival after Tarsakh |
+| 5 | Mirtul     | 30   | |
+| 6 | Kythorn    | 30   | |
+| 7 | Flamerule  | 30   | |
+| - | *Midsummer* | 1 | Festival after Flamerule |
+| - | *(Shieldmeet)* | 1 | Leap day (every 4 years) |
+| 8 | Eleasis    | 30   | |
+| 9 | Eleint     | 30   | |
+| - | *Highharvestide* | 1 | Festival after Eleint |
+| 10 | Marpenoth  | 30   | |
+| 11 | Uktar      | 30   | |
+| - | *Feast of the Moon* | 1 | Festival after Uktar |
+| 12 | Nightal    | 30   | |
+
+**Total:** 12 months × 30 days + 5 festivals = 365 days (366 with Shieldmeet)
+
+**Note:** Festival days and Shieldmeet are nameless days that exist between months and are automatically accounted for in date arithmetic.
 
 #### Usage Example
 
@@ -110,9 +115,15 @@ if ($calendar->isLeapYear(1492)) {
     echo "Shieldmeet occurs this year!";
 }
 
-// Festival days
-$midwinter = $calendar->parse('1 Midwinter 1492 DR');
-$midsummer = $calendar->parse('1 Midsummer 1492 DR');
+// Calculate days between dates (includes festival days)
+$start = $calendar->parse('1 Hammer 1492 DR');
+$end = $calendar->parse('1 Hammer 1493 DR');
+$span = $calendar->diff($start, $end);
+echo $span->getTotalDays(); // 366 (includes 5 festivals + Shieldmeet)
+
+// Get nameless days configuration
+$namelessDays = $calendar->getProfile()->getNamelessDays();
+// Returns configuration for Midwinter, Greengrass, Midsummer (+Shieldmeet), Highharvestide, Feast of the Moon
 ```
 
 ---
@@ -170,28 +181,33 @@ The Aventurian calendar from Das Schwarze Auge (The Dark Eye) RPG.
 
 #### Specifications
 
-- **Months:** 12 regular months + 5 nameless days
+- **Months:** 12 regular months
+- **Nameless Days:** 5 nameless days at year end
 - **Days per Year:** 365 (always constant)
 - **Leap Year Rule:** None (no leap years)
 - **Epoch Notation:** BF (Bosparans Fall)
 
 #### Month Structure
 
-| Month | Name        | Days |
-|-------|-------------|------|
-| 1     | Praios      | 30   |
-| 2     | Rondra      | 30   |
-| 3     | Efferd      | 30   |
-| 4     | Travia      | 30   |
-| 5     | Boron       | 30   |
-| 6     | Hesinde     | 30   |
-| 7     | Firun       | 30   |
-| 8     | Tsa         | 30   |
-| 9     | Phex        | 30   |
-| 10    | Peraine     | 30   |
-| 11    | Ingerimm    | 30   |
-| 12    | Rahja       | 30   |
-| 13    | Nameless Days| 5   |
+| # | Name        | Days |
+|---|-------------|------|
+| 1 | Praios      | 30   |
+| 2 | Rondra      | 30   |
+| 3 | Efferd      | 30   |
+| 4 | Travia      | 30   |
+| 5 | Boron       | 30   |
+| 6 | Hesinde     | 30   |
+| 7 | Firun       | 30   |
+| 8 | Tsa         | 30   |
+| 9 | Phex        | 30   |
+| 10 | Peraine     | 30   |
+| 11 | Ingerimm    | 30   |
+| 12 | Rahja       | 30   |
+| - | *5 Nameless Days* | 5 | After Rahja, at year end |
+
+**Total:** 12 months × 30 days + 5 nameless days = 365 days
+
+**Note:** The nameless days are automatically accounted for in date arithmetic and calculations.
 
 #### Usage Example
 
@@ -204,8 +220,15 @@ echo $calendar->format($date, 'd F Y'); // 12 Praios 1045
 // No leap years in Aventuria
 echo $calendar->isLeapYear(1045) ? 'Leap' : 'Normal'; // Always Normal
 
-// The nameless days
-$nameless = $calendar->parse('3 Nameless Days 1045 BF');
+// Calculate days in a year (includes nameless days)
+$start = $calendar->parse('1 Praios 1045 BF');
+$end = $calendar->parse('1 Praios 1046 BF');
+$span = $calendar->diff($start, $end);
+echo $span->getTotalDays(); // 365 (includes 5 nameless days)
+
+// Get nameless days configuration
+$namelessDays = $calendar->getProfile()->getNamelessDays();
+// Returns configuration for the 5 nameless days at year end
 ```
 
 ---
