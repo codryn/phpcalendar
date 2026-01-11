@@ -25,14 +25,14 @@
 
 **Purpose**: Project initialization and basic structure per constitution requirements
 
-- [ ] T001 Create composer.json with PHP 8.0+ requirement and PSR-4 autoloading for Codryn\\PHPCalendar namespace
-- [ ] T002 [P] Create directory structure: src/{Calendar,Profile,Parser,Validator,Exception}, tests/{Unit,Integration,Acceptance}
-- [ ] T003 [P] Configure PHPUnit 9.5+ in phpunit.xml with coverage reporting and test suites (Unit, Integration, Acceptance)
-- [ ] T004 [P] Configure PHP-CS-Fixer in .php-cs-fixer.php for PSR-12 compliance with strict_types enforcement
-- [ ] T005 [P] Configure PHPStan level 9 in phpstan.neon with strictRules for all PHP 8.0 compatible checks
-- [ ] T006 [P] Create GitHub Actions workflow .github/workflows/ci.yml for PHP 8.0/8.1/8.2/8.3 matrix testing
-- [ ] T007 Create README.md with installation, quickstart, and package badges
-- [ ] T008 Create CHANGELOG.md following Keep a Changelog format
+- [X] T001 Create composer.json with PHP 8.0+ requirement and PSR-4 autoloading for Codryn\\PHPCalendar namespace
+- [X] T002 [P] Create directory structure: src/{Calendar,Profile,Parser,Validator,Exception}, tests/{Unit,Integration,Acceptance}
+- [X] T003 [P] Configure PHPUnit 9.5+ in phpunit.xml with coverage reporting and test suites (Unit, Integration, Acceptance)
+- [X] T004 [P] Configure PHP-CS-Fixer in .php-cs-fixer.php for PSR-12 compliance with strict_types enforcement
+- [X] T005 [P] Configure PHPStan level 9 in phpstan.neon with strictRules for all PHP 8.0 compatible checks
+- [X] T006 [P] Create GitHub Actions workflow .github/workflows/ci.yml for PHP 8.0/8.1/8.2/8.3 matrix testing
+- [X] T007 Create README.md with installation, quickstart, and package badges
+- [X] T008 Create CHANGELOG.md following Keep a Changelog format
 
 ---
 
@@ -42,14 +42,14 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T009 [P] Create CalendarException base class in src/Exception/CalendarException.php with strict_types=1
-- [ ] T010 [P] Create InvalidDateException in src/Exception/InvalidDateException.php
-- [ ] T011 [P] Create InvalidCalendarConfigException in src/Exception/InvalidCalendarConfigException.php
-- [ ] T012 [P] Create IncompatibleCalendarException in src/Exception/IncompatibleCalendarException.php
-- [ ] T013 [P] Create DateArithmeticException in src/Exception/DateArithmeticException.php
-- [ ] T014 [P] Create CalendarProfileInterface in src/Calendar/CalendarProfileInterface.php with all required methods
-- [ ] T015 Create AbstractCalendarProfile base class in src/Profile/AbstractCalendarProfile.php implementing shared logic
-- [ ] T016 Write unit tests for exception hierarchy in tests/Unit/Exception/
+- [X] T009 [P] Create CalendarException base class in src/Exception/CalendarException.php with strict_types=1
+- [X] T010 [P] Create InvalidDateException in src/Exception/InvalidDateException.php
+- [X] T011 [P] Create InvalidCalendarConfigException in src/Exception/InvalidCalendarConfigException.php
+- [X] T012 [P] Create IncompatibleCalendarException in src/Exception/IncompatibleCalendarException.php
+- [X] T013 [P] Create DateArithmeticException in src/Exception/DateArithmeticException.php
+- [X] T014 [P] Create CalendarProfileInterface in src/Calendar/CalendarProfileInterface.php with all required methods
+- [X] T015 Create AbstractCalendarProfile base class in src/Profile/AbstractCalendarProfile.php implementing shared logic
+- [X] T016 Write unit tests for exception hierarchy in tests/Unit/Exception/
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -65,21 +65,21 @@
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T017 [P] [US1] Write acceptance test UserStory1Test.php: Create Gregorian calendar and verify 12 months, leap year rules
-- [ ] T018 [P] [US1] Write acceptance test UserStory1Test.php: Create Faerûn calendar and verify Harptos calendar properties  
-- [ ] T019 [P] [US1] Write acceptance test UserStory1Test.php: Query calendar properties (months, days per month, year structure)
-- [ ] T020 [P] [US1] Write acceptance test UserStory1Test.php: Invalid profile name throws exception with available profiles list
-- [ ] T021 [P] [US1] Write unit tests for GregorianProfile in tests/Unit/Profile/GregorianProfileTest.php
-- [ ] T022 [P] [US1] Write unit tests for FaerunProfile in tests/Unit/Profile/FaerunProfileTest.php
+- [X] T017 [P] [US1] Write acceptance test UserStory1Test.php: Create Gregorian calendar and verify 12 months, leap year rules
+- [X] T018 [P] [US1] Write acceptance test UserStory1Test.php: Create Faerûn calendar and verify Harptos calendar properties  
+- [X] T019 [P] [US1] Write acceptance test UserStory1Test.php: Query calendar properties (months, days per month, year structure)
+- [X] T020 [P] [US1] Write acceptance test UserStory1Test.php: Invalid profile name throws exception with available profiles list
+- [X] T021 [P] [US1] Write unit tests for GregorianProfile in tests/Unit/Profile/GregorianProfileTest.php
+- [X] T022 [P] [US1] Write unit tests for FaerunProfile in tests/Unit/Profile/FaerunProfileTest.php
 
 ### Implementation for User Story 1
 
-- [ ] T023 [P] [US1] Implement GregorianProfile class in src/Profile/GregorianProfile.php with 12 months, correct leap year logic (divisible by 4, not 100, except 400)
-- [ ] T024 [P] [US1] Implement FaerunProfile class in src/Profile/FaerunProfile.php with Harptos calendar (12 months x 30 days + 5 festivals, Shieldmeet leap year)
-- [ ] T025 [US1] Create ProfileRegistry service in src/Calendar/ProfileRegistry.php to manage profile lookup by name
-- [ ] T026 [US1] Implement Calendar class in src/Calendar/Calendar.php with static fromProfile() factory method
-- [ ] T027 [US1] Add calendar property getters in Calendar.php: getName(), getDisplayName(), getMonthNames(), getMonthCount(), getDaysInMonth(), isLeapYear(), getEpochNotation()
-- [ ] T028 [US1] Write integration test in tests/Integration/ProfileFactoryTest.php verifying Calendar::fromProfile() for both Gregorian and Faerûn
+- [X] T023 [P] [US1] Implement GregorianProfile class in src/Profile/GregorianProfile.php with 12 months, correct leap year logic (divisible by 4, not 100, except 400)
+- [X] T024 [P] [US1] Implement FaerunProfile class in src/Profile/FaerunProfile.php with Harptos calendar (12 months x 30 days + 5 festivals, Shieldmeet leap year)
+- [X] T025 [US1] Create ProfileRegistry service in src/Calendar/ProfileRegistry.php to manage profile lookup by name
+- [X] T026 [US1] Implement Calendar class in src/Calendar/Calendar.php with static fromProfile() factory method
+- [X] T027 [US1] Add calendar property getters in Calendar.php: getName(), getDisplayName(), getMonthNames(), getMonthCount(), getDaysInMonth(), isLeapYear(), getEpochNotation()
+- [X] T028 [US1] Write integration test in tests/Integration/ProfileFactoryTest.php verifying Calendar::fromProfile() for both Gregorian and Faerûn
 
 **Checkpoint**: At this point, User Story 1 is fully functional - developers can create calendars from profiles and query their properties
 
