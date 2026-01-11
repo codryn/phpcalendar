@@ -11,6 +11,7 @@ A powerful, type-safe calendar system for PHP supporting both real-world (Gregor
 ## Features
 
 - 🗓️ **7 Built-in Calendar Profiles**: Gregorian + 6 fantasy RPG calendars (Faerûn, Golarion, DSA, Eberron, Dragonlance, Greyhawk)
+- 🌍 **Internationalization**: Support for 5 languages (English, German, French, Spanish, Italian) for month names, epochs, and calendar names
 - 📅 **Flexible Date Parsing**: Parse dates from natural language and various formats
 - 🎨 **Customizable Formatting**: Format dates with custom patterns
 - ⏱️ **Date Arithmetic**: Add/subtract time spans, calculate differences between dates
@@ -54,6 +55,63 @@ $start = $calendar->parse('2024-01-01');
 $end = $calendar->parse('2024-12-31');
 $span = $calendar->diff($start, $end);
 echo $span->getTotalDays(); // 365
+```
+
+## Internationalization
+
+PHPCalendar supports internationalization for all built-in calendar profiles. Calendar names, month names, epoch notations, and nameless day names can be displayed in 5 languages:
+
+- **en-us** (English - default)
+- **de** (German)
+- **fr** (French)
+- **es** (Spanish)
+- **it** (Italian)
+
+### Usage
+
+```php
+use Codryn\PHPCalendar\Calendar\Calendar;
+
+// Create calendar with German locale
+$calendar = Calendar::fromProfile('gregorian', 'de');
+echo $calendar->getDisplayName(); // "Gregorianischer Kalender"
+
+// Create calendar with French locale
+$calendar = Calendar::fromProfile('gregorian', 'fr');
+echo $calendar->getDisplayName(); // "Calendrier Grégorien"
+
+// Get localized month names
+$profile = new \Codryn\PHPCalendar\Profile\GregorianProfile();
+$profile->setLocale('es');
+$months = $profile->getMonthNames();
+echo $months[1]; // "Enero" (January in Spanish)
+
+// Get localized epoch notation
+$epoch = $profile->getEpochNotation();
+echo $epoch['after']; // "d.C." (Spanish for AD/CE)
+```
+
+### Supported Translations
+
+| Calendar | Month Names | Display Name | Epoch Notation | Nameless Days |
+|----------|-------------|--------------|----------------|---------------|
+| Gregorian | ✅ All 5 | ✅ All 5 | ✅ All 5 | N/A |
+| Faerûn | Proper nouns* | ✅ All 5 | ✅ All 5 | ✅ All 5 |
+| DSA | Proper nouns* | ✅ All 5 | ✅ All 5 | ✅ All 5 |
+| Dragonlance | ✅ All 5 | ✅ All 5 | ✅ All 5 | N/A |
+| Eberron | Proper nouns* | ✅ All 5 | ✅ All 5 | N/A |
+| Golarion | Proper nouns* | ✅ All 5 | ✅ All 5 | N/A |
+| Greyhawk | ✅ All 5 | ✅ All 5 | ✅ All 5 | N/A |
+
+*Proper nouns (fantasy deity names, dragonmarks, etc.) remain untranslated across all languages.
+
+### Locale Fallback
+
+If an unsupported or invalid locale is provided, the system automatically falls back to English (en-us):
+
+```php
+$calendar = Calendar::fromProfile('gregorian', 'unsupported-locale');
+echo $calendar->getDisplayName(); // "Gregorian Calendar" (English fallback)
 ```
 
 ## Calendar Profiles
@@ -235,7 +293,13 @@ PHPCalendar provides a clean, fluent API for calendar operations:
 ```php
 // Create calendar
 $calendar = Calendar::fromProfile('gregorian');
+$calendar = Calendar::fromProfile('gregorian', 'de'); // With locale
 $calendar = Calendar::fromConfiguration($config);
+
+// Set locale on profile directly
+$profile = new GregorianProfile();
+$profile->setLocale('fr');
+$locale = $profile->getLocale(); // 'fr'
 
 // Parse dates
 $date = $calendar->parse('December 25, 2024');
