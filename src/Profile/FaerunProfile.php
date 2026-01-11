@@ -15,6 +15,8 @@ use Codryn\PHPCalendar\Locale\FaerunTranslations;
  */
 final class FaerunProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     /**
      * @inheritDoc
      */
@@ -93,5 +95,13 @@ final class FaerunProfile extends AbstractCalendarProfile
     public function getNamelessDays(): array
     {
         return FaerunTranslations::getNamelessDays($this->locale);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->getWizardsOfTheCoastCopyright('Forgotten Realms', 'Forgotten Realms');
     }
 }

@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\GolarionTranslations;
  */
 final class GolarionProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     private const DAYS_PER_MONTH = [
         1 => 31,  // Abadius
         2 => 28,  // Calistril
@@ -75,5 +77,13 @@ final class GolarionProfile extends AbstractCalendarProfile
             'setting' => 'Golarion',
             'description' => 'Absalom Reckoning calendar, dating from the founding of Absalom in 1 AR',
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->getPaizoCopyright('Golarion', 'Pathfinder, Golarion');
     }
 }

@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\DragonlanceTranslations;
  */
 final class DragonlanceProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     private const DAYS_PER_MONTH = [
         1 => 31,  // Winter Deep
         2 => 28,  // Winter Wane
@@ -82,5 +84,13 @@ final class DragonlanceProfile extends AbstractCalendarProfile
             'setting' => 'Krynn',
             'description' => 'Krynn calendar with varying month lengths, AC/PC reckoning from the Cataclysm',
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->getWizardsOfTheCoastCopyright('Dragonlance', 'Dragonlance, Krynn');
     }
 }

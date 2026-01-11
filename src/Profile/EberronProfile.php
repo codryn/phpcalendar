@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\EberronTranslations;
  */
 final class EberronProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     public function getName(): string
     {
         return 'eberron';
@@ -61,5 +63,13 @@ final class EberronProfile extends AbstractCalendarProfile
             'setting' => 'Eberron',
             'description' => 'Galifar Calendar with 12 months of 28 days each (336 days per year)',
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->getWizardsOfTheCoastCopyright('Eberron', 'Eberron');
     }
 }

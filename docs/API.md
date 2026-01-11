@@ -339,6 +339,8 @@ $config = new CalendarConfiguration(
 
 ## Calendar Profiles
 
+All fantasy RPG calendar profiles include copyright notices that can be accessed via the `getCopyrightNotice()` method. These notices acknowledge that the calendar names and terminology are used solely for non-commercial purposes to help game masters keep track of their campaigns.
+
 ### GregorianProfile
 
 Standard Gregorian calendar with proper leap year rules.
@@ -350,6 +352,7 @@ $calendar = Calendar::fromProfile('gregorian');
 - **12 months** with varying days (28-31)
 - **Leap year**: Divisible by 4, except century years unless divisible by 400
 - **Epoch**: BCE/CE
+- **Copyright**: None (real-world calendar)
 
 ### FaerunProfile
 
@@ -357,11 +360,16 @@ Faerûn Harptos calendar from Forgotten Realms.
 
 ```php
 $calendar = Calendar::fromProfile('faerun');
+
+// Access copyright notice
+$profile = new \Codryn\PHPCalendar\Profile\FaerunProfile();
+$copyright = $profile->getCopyrightNotice();
 ```
 
 - **12 months** of 30 days each + 5 festivals
 - **Leap year**: Every 4 years (Shieldmeet)
 - **Epoch**: Dale Reckoning (DR)
+- **Copyright**: Wizards of the Coast LLC (D&D, Forgotten Realms)
 
 ### GolarionProfile
 
@@ -369,11 +377,16 @@ Golarion Absalom Reckoning from Pathfinder.
 
 ```php
 $calendar = Calendar::fromProfile('golarion');
+
+// Access copyright notice
+$profile = new \Codryn\PHPCalendar\Profile\GolarionProfile();
+$copyright = $profile->getCopyrightNotice();
 ```
 
 - **12 months** with varying days (28-31)
 - **Leap year**: Every 8 years
 - **Epoch**: Absalom Reckoning (AR)
+- **Copyright**: Paizo Inc. (Pathfinder, Golarion)
 
 ### DSAProfile
 
@@ -381,11 +394,16 @@ Das Schwarze Auge (The Dark Eye) Aventurian calendar.
 
 ```php
 $calendar = Calendar::fromProfile('dsa');
+
+// Access copyright notice
+$profile = new \Codryn\PHPCalendar\Profile\DSAProfile();
+$copyright = $profile->getCopyrightNotice();
 ```
 
 - **12 months** of 30 days each + 5 nameless days
 - **No leap years**
 - **Epoch**: Bosparans Fall (BF)
+- **Copyright**: Ulisses Spiele GmbH (Das Schwarze Auge, The Dark Eye)
 
 ### EberronProfile
 
@@ -393,11 +411,16 @@ Eberron Galifar Calendar.
 
 ```php
 $calendar = Calendar::fromProfile('eberron');
+
+// Access copyright notice
+$profile = new \Codryn\PHPCalendar\Profile\EberronProfile();
+$copyright = $profile->getCopyrightNotice();
 ```
 
 - **12 months** of 28 days each (336 days/year)
 - **No leap years**
 - **Epoch**: Years of Kingdom (YK)
+- **Copyright**: Wizards of the Coast LLC (D&D, Eberron)
 
 ### DragonlanceProfile
 
@@ -405,11 +428,16 @@ Dragonlance Krynn calendar.
 
 ```php
 $calendar = Calendar::fromProfile('dragonlance');
+
+// Access copyright notice
+$profile = new \Codryn\PHPCalendar\Profile\DragonlanceProfile();
+$copyright = $profile->getCopyrightNotice();
 ```
 
 - **12 months** with varying days (28-31)
 - **Leap year**: Gregorian rules
 - **Epoch**: After/Pre Cataclysm (AC/PC)
+- **Copyright**: Wizards of the Coast LLC (D&D, Dragonlance)
 
 ### GreyhawkProfile
 
@@ -417,11 +445,16 @@ World of Greyhawk Common Year calendar.
 
 ```php
 $calendar = Calendar::fromProfile('greyhawk');
+
+// Access copyright notice
+$profile = new \Codryn\PHPCalendar\Profile\GreyhawkProfile();
+$copyright = $profile->getCopyrightNotice();
 ```
 
 - **12 regular months** (28 days) + 4 festival weeks (7 days)
 - **No leap years**
 - **Epoch**: Common Year (CY)
+- **Copyright**: Wizards of the Coast LLC (D&D, Greyhawk)
 
 ---
 

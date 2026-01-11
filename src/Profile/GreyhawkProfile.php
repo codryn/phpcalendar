@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\GreyhawkTranslations;
  */
 final class GreyhawkProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     public function getName(): string
     {
         return 'greyhawk';
@@ -66,5 +68,13 @@ final class GreyhawkProfile extends AbstractCalendarProfile
             'setting' => 'Oerth (Greyhawk)',
             'description' => 'Common Year calendar with 12 months of 28 days plus 4 festival weeks (364 days total)',
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->getWizardsOfTheCoastCopyright('Greyhawk', 'Greyhawk');
     }
 }

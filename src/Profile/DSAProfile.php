@@ -13,6 +13,8 @@ use Codryn\PHPCalendar\Locale\DSATranslations;
  */
 final class DSAProfile extends AbstractCalendarProfile
 {
+    use CopyrightNoticeTrait;
+
     public function getName(): string
     {
         return 'dsa';
@@ -69,5 +71,13 @@ final class DSAProfile extends AbstractCalendarProfile
     public function getNamelessDays(): array
     {
         return DSATranslations::getNamelessDays($this->locale);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->getUlissesSpieleCopyright('Das Schwarze Auge (The Dark Eye)', 'Das Schwarze Auge, The Dark Eye, Aventuria');
     }
 }
