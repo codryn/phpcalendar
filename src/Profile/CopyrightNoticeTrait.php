@@ -6,6 +6,14 @@ namespace Codryn\PHPCalendar\Profile;
 
 /**
  * Trait providing copyright notice generation for RPG calendar profiles
+ *
+ * This trait provides standardized copyright notice methods for calendar
+ * implementations based on tabletop role-playing game settings. It ensures
+ * consistent messaging about non-commercial use and proper attribution to
+ * intellectual property holders.
+ *
+ * The trait is designed for use by calendar profile classes that represent
+ * game system calendars (e.g., D&D, Pathfinder, Das Schwarze Auge).
  */
 trait CopyrightNoticeTrait
 {

@@ -123,17 +123,17 @@ class CopyrightNoticeTest extends TestCase
     /**
      * Provide RPG profiles for testing
      *
-     * @return array<string, array{0: object}>
+     * @return array<string, object>
      */
     private function getRPGProfiles(): array
     {
         return [
-            'faerun' => [new FaerunProfile()],
-            'golarion' => [new GolarionProfile()],
-            'dsa' => [new DSAProfile()],
-            'eberron' => [new EberronProfile()],
-            'dragonlance' => [new DragonlanceProfile()],
-            'greyhawk' => [new GreyhawkProfile()],
+            'faerun' => new FaerunProfile(),
+            'golarion' => new GolarionProfile(),
+            'dsa' => new DSAProfile(),
+            'eberron' => new EberronProfile(),
+            'dragonlance' => new DragonlanceProfile(),
+            'greyhawk' => new GreyhawkProfile(),
         ];
     }
 
@@ -143,7 +143,7 @@ class CopyrightNoticeTest extends TestCase
     public function testAllRPGProfilesHaveNonCommercialClause(): void
     {
         foreach ($this->getRPGProfiles() as $profile) {
-            $copyright = $profile[0]->getCopyrightNotice();
+            $copyright = $profile->getCopyrightNotice();
             $this->assertIsString($copyright);
             $this->assertStringContainsString('non-commercial', $copyright);
         }
@@ -155,7 +155,7 @@ class CopyrightNoticeTest extends TestCase
     public function testAllRPGProfilesHaveGameMasterClause(): void
     {
         foreach ($this->getRPGProfiles() as $profile) {
-            $copyright = $profile[0]->getCopyrightNotice();
+            $copyright = $profile->getCopyrightNotice();
             $this->assertIsString($copyright);
             $this->assertStringContainsString('game masters', $copyright);
         }
