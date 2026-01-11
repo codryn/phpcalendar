@@ -45,7 +45,7 @@ final class ProfileRegistry
             );
         }
 
-        return self::$profiles[$name];
+        return clone self::$profiles[$name];
     }
 
     /**
