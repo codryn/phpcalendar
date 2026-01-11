@@ -95,26 +95,26 @@
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T029 [P] [US2] Write acceptance test UserStory2Test.php: Parse Gregorian date string to TimePoint
-- [ ] T030 [P] [US2] Write acceptance test UserStory2Test.php: Parse Faerûn date string "15 Mirtul 1492 DR" to TimePoint
-- [ ] T031 [P] [US2] Write acceptance test UserStory2Test.php: Format TimePoint to calendar-appropriate string
-- [ ] T032 [P] [US2] Write acceptance test UserStory2Test.php: Round-trip parse→format→parse produces equivalent TimePoint
-- [ ] T033 [P] [US2] Write acceptance test UserStory2Test.php: Invalid date string throws InvalidDateException
-- [ ] T034 [P] [US2] Write acceptance test UserStory2Test.php: Multiple format patterns are tried until one matches
-- [ ] T035 [P] [US2] Write unit tests for TimePoint in tests/Unit/Calendar/TimePointTest.php
-- [ ] T036 [P] [US2] Write unit tests for DateParser in tests/Unit/Parser/DateParserTest.php
-- [ ] T037 [P] [US2] Write unit tests for DateFormatter in tests/Unit/Parser/DateFormatterTest.php
+- [X] T029 [P] [US2] Write acceptance test UserStory2Test.php: Parse Gregorian date string to TimePoint
+- [X] T030 [P] [US2] Write acceptance test UserStory2Test.php: Parse Faerûn date string "15 Mirtul 1492 DR" to TimePoint
+- [X] T031 [P] [US2] Write acceptance test UserStory2Test.php: Format TimePoint to calendar-appropriate string
+- [X] T032 [P] [US2] Write acceptance test UserStory2Test.php: Round-trip parse→format→parse produces equivalent TimePoint
+- [X] T033 [P] [US2] Write acceptance test UserStory2Test.php: Invalid date string throws InvalidDateException
+- [X] T034 [P] [US2] Write acceptance test UserStory2Test.php: Multiple format patterns are tried until one matches
+- [X] T035 [P] [US2] Write unit tests for TimePoint in tests/Unit/Calendar/TimePointTest.php
+- [X] T036 [P] [US2] Write unit tests for DateParser in tests/Unit/Parser/DateParserTest.php
+- [X] T037 [P] [US2] Write unit tests for DateFormatter in tests/Unit/Parser/DateFormatterTest.php
 
 ### Implementation for User Story 2
 
-- [ ] T038 [P] [US2] Implement TimePoint value object in src/Calendar/TimePoint.php with year, month, day, hour, minute, second, microsecond properties (all with strict types)
-- [ ] T039 [P] [US2] Add TimePoint getters: getCalendar(), getYear(), getMonth(), getDay(), getHour(), getMinute(), getSecond(), getMicrosecond()
-- [ ] T040 [P] [US2] Implement DateParser class in src/Parser/DateParser.php with parse() method trying format patterns
-- [ ] T041 [P] [US2] Implement DateFormatter class in src/Parser/DateFormatter.php with format() method using profile patterns
-- [ ] T042 [US2] Add Calendar::parse() method delegating to DateParser with validation
-- [ ] T043 [US2] Add Calendar::format() method delegating to DateFormatter
-- [ ] T044 [US2] Add date validation in TimePoint constructor: check month in range, day exists in calendar, hour/minute/second/microsecond in valid ranges
-- [ ] T045 [US2] Write integration test in tests/Integration/DateParsingTest.php for end-to-end parse and format scenarios
+- [X] T038 [P] [US2] Implement TimePoint value object in src/Calendar/TimePoint.php with year, month, day, hour, minute, second, microsecond properties (all with strict types)
+- [X] T039 [P] [US2] Add TimePoint getters: getCalendar(), getYear(), getMonth(), getDay(), getHour(), getMinute(), getSecond(), getMicrosecond()
+- [X] T040 [P] [US2] Implement DateParser class in src/Parser/DateParser.php with parse() method trying format patterns
+- [X] T041 [P] [US2] Implement DateFormatter class in src/Parser/DateFormatter.php with format() method using profile patterns
+- [X] T042 [US2] Add Calendar::parse() method delegating to DateParser with validation
+- [X] T043 [US2] Add Calendar::format() method delegating to DateFormatter
+- [X] T044 [US2] Add date validation in TimePoint constructor: check month in range, day exists in calendar, hour/minute/second/microsecond in valid ranges
+- [X] T045 [US2] Write integration test in tests/Integration/DateParsingTest.php for end-to-end parse and format scenarios
 
 **Checkpoint**: At this point, User Story 2 is fully functional - developers can parse and format dates with validation
 
@@ -130,30 +130,30 @@
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T046 [P] [US3] Write acceptance test UserStory3Test.php: Calculate diff between two TimePoints returns TimeSpan with correct day count
-- [ ] T047 [P] [US3] Write acceptance test UserStory3Test.php: Diff spanning multiple years accounts for leap years correctly
-- [ ] T048 [P] [US3] Write acceptance test UserStory3Test.php: TimeSpan.getTotalDays() returns accurate count
-- [ ] T049 [P] [US3] Write acceptance test UserStory3Test.php: TimePoint.add(TimeSpan) returns new future TimePoint
-- [ ] T050 [P] [US3] Write acceptance test UserStory3Test.php: TimePoint.subtract(TimeSpan) returns new past TimePoint
-- [ ] T051 [P] [US3] Write acceptance test UserStory3Test.php: Diff with end before start returns negative TimeSpan
-- [ ] T052 [P] [US3] Write acceptance test UserStory3Test.php: Invalid date arithmetic (Jan 31 + 1 month) throws DateArithmeticException
-- [ ] T053 [P] [US3] Write unit tests for TimeSpan in tests/Unit/Calendar/TimeSpanTest.php
-- [ ] T054 [P] [US3] Write unit tests for TimePoint arithmetic in tests/Unit/Calendar/TimePointArithmeticTest.php
+- [X] T046 [P] [US3] Write acceptance test UserStory3Test.php: Calculate diff between two TimePoints returns TimeSpan with correct day count
+- [X] T047 [P] [US3] Write acceptance test UserStory3Test.php: Diff spanning multiple years accounts for leap years correctly
+- [X] T048 [P] [US3] Write acceptance test UserStory3Test.php: TimeSpan.getTotalDays() returns accurate count
+- [X] T049 [P] [US3] Write acceptance test UserStory3Test.php: TimePoint.add(TimeSpan) returns new future TimePoint
+- [X] T050 [P] [US3] Write acceptance test UserStory3Test.php: TimePoint.subtract(TimeSpan) returns new past TimePoint
+- [X] T051 [P] [US3] Write acceptance test UserStory3Test.php: Diff with end before start returns negative TimeSpan
+- [X] T052 [P] [US3] Write acceptance test UserStory3Test.php: Invalid date arithmetic (Jan 31 + 1 month) throws DateArithmeticException
+- [X] T053 [P] [US3] Write unit tests for TimeSpan in tests/Unit/Calendar/TimeSpanTest.php
+- [X] T054 [P] [US3] Write unit tests for TimePoint arithmetic in tests/Unit/Calendar/TimePointArithmeticTest.php
 
 ### Implementation for User Story 3
 
-- [ ] T055 [P] [US3] Implement TimeSpan value object in src/Calendar/TimeSpan.php with seconds and microseconds properties (strict types)
-- [ ] T056 [P] [US3] Add TimeSpan factory: static fromSeconds(int $seconds, int $microseconds = 0): self
-- [ ] T057 [P] [US3] Add TimeSpan getters: getTotalSeconds(), getMicroseconds(), getTotalDays(), getTotalHours(), getTotalMinutes()
-- [ ] T058 [P] [US3] Add TimeSpan helpers: isNegative(), abs(), negate(), add(TimeSpan), subtract(TimeSpan)
-- [ ] T059 [US3] Implement Calendar::diff(TimePoint, TimePoint) converting both to seconds since epoch and calculating difference
-- [ ] T060 [US3] Add cross-calendar validation in diff() throwing IncompatibleCalendarException if calendars differ
-- [ ] T061 [US3] Implement TimePoint::add(TimeSpan) converting to seconds, adding span, converting back with date validation
-- [ ] T062 [US3] Implement TimePoint::subtract(TimeSpan) using add() with negated span
-- [ ] T063 [US3] Add date validation in arithmetic throwing DateArithmeticException for invalid results (e.g., Feb 31)
-- [ ] T064 [US3] Implement TimePoint comparison methods: equals(), isBefore(), isAfter() with cross-calendar validation
-- [ ] T065 [US3] Write integration test in tests/Integration/DateArithmeticTest.php for complex multi-calendar scenarios
-- [ ] T066 [US3] Write integration test in tests/Integration/CrossCalendarTest.php verifying IncompatibleCalendarException
+- [X] T055 [P] [US3] Implement TimeSpan value object in src/Calendar/TimeSpan.php with seconds and microseconds properties (strict types)
+- [X] T056 [P] [US3] Add TimeSpan factory: static fromSeconds(int $seconds, int $microseconds = 0): self
+- [X] T057 [P] [US3] Add TimeSpan getters: getTotalSeconds(), getMicroseconds(), getTotalDays(), getTotalHours(), getTotalMinutes()
+- [X] T058 [P] [US3] Add TimeSpan helpers: isNegative(), abs(), negate(), add(TimeSpan), subtract(TimeSpan)
+- [X] T059 [US3] Implement Calendar::diff(TimePoint, TimePoint) converting both to seconds since epoch and calculating difference
+- [X] T060 [US3] Add cross-calendar validation in diff() throwing IncompatibleCalendarException if calendars differ
+- [X] T061 [US3] Implement TimePoint::add(TimeSpan) converting to seconds, adding span, converting back with date validation
+- [X] T062 [US3] Implement TimePoint::subtract(TimeSpan) using add() with negated span
+- [X] T063 [US3] Add date validation in arithmetic throwing DateArithmeticException for invalid results (e.g., Feb 31)
+- [X] T064 [US3] Implement TimePoint comparison methods: equals(), isBefore(), isAfter() with cross-calendar validation
+- [X] T065 [US3] Write integration test in tests/Integration/DateArithmeticTest.php for complex multi-calendar scenarios
+- [X] T066 [US3] Write integration test in tests/Integration/CrossCalendarTest.php verifying IncompatibleCalendarException
 
 **Checkpoint**: At this point, User Story 3 is fully functional - COMPLETE MVP with profile-based calendars, parsing/formatting, and date arithmetic
 
@@ -201,28 +201,28 @@
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T081 [P] [US5] Write acceptance test UserStory5Test.php: Create Golarion calendar, verify Absalom Reckoning properties
-- [ ] T082 [P] [US5] Write acceptance test UserStory5Test.php: Create DSA calendar with "dsa" alias, verify Aventurian calendar
-- [ ] T083 [P] [US5] Write acceptance test UserStory5Test.php: Create Eberron calendar, verify Galifar Calendar properties
-- [ ] T084 [P] [US5] Write acceptance test UserStory5Test.php: Create Dragonlance calendar, verify Krynn calendar
-- [ ] T085 [P] [US5] Write acceptance test UserStory5Test.php: Create Greyhawk calendar, verify Common Year properties
-- [ ] T086 [P] [US5] Write acceptance test UserStory5Test.php: Query profile metadata returns source and setting information
-- [ ] T087 [P] [US5] Write unit tests for GolarionProfile in tests/Unit/Profile/GolarionProfileTest.php
-- [ ] T088 [P] [US5] Write unit tests for DSAProfile in tests/Unit/Profile/DSAProfileTest.php
-- [ ] T089 [P] [US5] Write unit tests for EberronProfile in tests/Unit/Profile/EberronProfileTest.php
-- [ ] T090 [P] [US5] Write unit tests for DragonlanceProfile in tests/Unit/Profile/DragonlanceProfileTest.php
-- [ ] T091 [P] [US5] Write unit tests for GreyhawkProfile in tests/Unit/Profile/GreyhawkProfileTest.php
+- [X] T081 [P] [US5] Write acceptance test UserStory5Test.php: Create Golarion calendar, verify Absalom Reckoning properties
+- [X] T082 [P] [US5] Write acceptance test UserStory5Test.php: Create DSA calendar with "dsa" alias, verify Aventurian calendar
+- [X] T083 [P] [US5] Write acceptance test UserStory5Test.php: Create Eberron calendar, verify Galifar Calendar properties
+- [X] T084 [P] [US5] Write acceptance test UserStory5Test.php: Create Dragonlance calendar, verify Krynn calendar
+- [X] T085 [P] [US5] Write acceptance test UserStory5Test.php: Create Greyhawk calendar, verify Common Year properties
+- [X] T086 [P] [US5] Write acceptance test UserStory5Test.php: Query profile metadata returns source and setting information
+- [X] T087 [P] [US5] Write unit tests for GolarionProfile in tests/Unit/Profile/GolarionProfileTest.php
+- [X] T088 [P] [US5] Write unit tests for DSAProfile in tests/Unit/Profile/DSAProfileTest.php
+- [X] T089 [P] [US5] Write unit tests for EberronProfile in tests/Unit/Profile/EberronProfileTest.php
+- [X] T090 [P] [US5] Write unit tests for DragonlanceProfile in tests/Unit/Profile/DragonlanceProfileTest.php
+- [X] T091 [P] [US5] Write unit tests for GreyhawkProfile in tests/Unit/Profile/GreyhawkProfileTest.php
 
 ### Implementation for User Story 5
 
-- [ ] T092 [P] [US5] Implement GolarionProfile in src/Profile/GolarionProfile.php: 12 months, leap year every 8 years, Absalom Reckoning epoch
-- [ ] T093 [P] [US5] Implement DSAProfile in src/Profile/DSAProfile.php: 12 months x 30 days + 5 nameless days, Bosparans Fall epoch
-- [ ] T094 [P] [US5] Implement EberronProfile in src/Profile/EberronProfile.php: 12 months x 28 days, no leap years, Galifar epoch
-- [ ] T095 [P] [US5] Implement DragonlanceProfile in src/Profile/DragonlanceProfile.php: varying month lengths, AC/PC epochs
-- [ ] T096 [P] [US5] Implement GreyhawkProfile in src/Profile/GreyhawkProfile.php: 12 months x 28 days + 4 festivals, Common Year
-- [ ] T097 [US5] Register all 5 new profiles in ProfileRegistry with appropriate aliases (e.g., "dsa", "black-eye")
-- [ ] T098 [US5] Add profile metadata support: getMetadata() returning source books, setting name, description
-- [ ] T099 [US5] Update README.md with examples for all 7 calendar profiles
+- [X] T092 [P] [US5] Implement GolarionProfile in src/Profile/GolarionProfile.php: 12 months, leap year every 8 years, Absalom Reckoning epoch
+- [X] T093 [P] [US5] Implement DSAProfile in src/Profile/DSAProfile.php: 12 months x 30 days + 5 nameless days, Bosparans Fall epoch
+- [X] T094 [P] [US5] Implement EberronProfile in src/Profile/EberronProfile.php: 12 months x 28 days, no leap years, Galifar epoch
+- [X] T095 [P] [US5] Implement DragonlanceProfile in src/Profile/DragonlanceProfile.php: varying month lengths, AC/PC epochs
+- [X] T096 [P] [US5] Implement GreyhawkProfile in src/Profile/GreyhawkProfile.php: 12 months x 28 days + 4 festivals, Common Year
+- [X] T097 [US5] Register all 5 new profiles in ProfileRegistry with appropriate aliases (e.g., "dsa", "black-eye")
+- [X] T098 [US5] Add profile metadata support: getMetadata() returning source books, setting name, description
+- [X] T099 [US5] Update README.md with examples for all 7 calendar profiles
 
 **Checkpoint**: At this point, User Story 5 is fully functional - all 7 fantasy/real-world calendar profiles available
 
@@ -232,17 +232,17 @@
 
 **Purpose**: Final quality improvements, documentation, and release preparation
 
-- [ ] T100 [P] Add type hints and PHPDoc blocks to all public methods with @param, @return, @throws annotations
-- [ ] T101 [P] Run PHP-CS-Fixer and fix all PSR-12 violations across entire codebase
-- [ ] T102 [P] Run PHPStan level 9 and resolve all errors/warnings
-- [ ] T103 [P] Verify all files have `declare(strict_types=1);` at the top
-- [ ] T104 Run full PHPUnit test suite and verify 100% of acceptance tests pass
+- [X] T100 [P] Add type hints and PHPDoc blocks to all public methods with @param, @return, @throws annotations
+- [X] T101 [P] Run PHP-CS-Fixer and fix all PSR-12 violations across entire codebase
+- [X] T102 [P] Run PHPStan level 9 and resolve all errors/warnings
+- [X] T103 [P] Verify all files have `declare(strict_types=1);` at the top
+- [X] T104 Run full PHPUnit test suite and verify 100% of acceptance tests pass
 - [ ] T105 Generate code coverage report and verify >90% coverage for src/
-- [ ] T106 [P] Create API documentation in docs/ folder with usage examples for each class
-- [ ] T107 [P] Write CONTRIBUTING.md with development setup, testing guidelines, PSR-12 requirements
-- [ ] T108 [P] Create LICENSE file (MIT per constitution)
-- [ ] T109 Update README.md with installation, quickstart, all 7 calendar examples, links to docs
-- [ ] T110 Create .gitattributes for proper language detection and export-ignore for dev files
+- [X] T106 [P] Create API documentation in docs/ folder with usage examples for each class
+- [X] T107 [P] Write CONTRIBUTING.md with development setup, testing guidelines, PSR-12 requirements
+- [X] T108 [P] Create LICENSE file (MIT per constitution)
+- [X] T109 Update README.md with installation, quickstart, all 7 calendar examples, links to docs
+- [X] T110 Create .gitattributes for proper language detection and export-ignore for dev files
 - [ ] T111 Tag v1.0.0 release and push to GitHub
 - [ ] T112 Register package on packagist.org with proper metadata
 

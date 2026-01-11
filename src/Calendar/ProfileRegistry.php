@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Codryn\PHPCalendar\Calendar;
 
+use Codryn\PHPCalendar\Profile\DragonlanceProfile;
+use Codryn\PHPCalendar\Profile\DSAProfile;
+use Codryn\PHPCalendar\Profile\EberronProfile;
 use Codryn\PHPCalendar\Profile\FaerunProfile;
+use Codryn\PHPCalendar\Profile\GolarionProfile;
 use Codryn\PHPCalendar\Profile\GregorianProfile;
+use Codryn\PHPCalendar\Profile\GreyhawkProfile;
 use InvalidArgumentException;
 
 /**
@@ -77,6 +82,11 @@ final class ProfileRegistry
 
         self::register('gregorian', new GregorianProfile());
         self::register('faerun', new FaerunProfile());
+        self::register('golarion', new GolarionProfile());
+        self::register('dsa', new DSAProfile());
+        self::register('eberron', new EberronProfile());
+        self::register('dragonlance', new DragonlanceProfile());
+        self::register('greyhawk', new GreyhawkProfile());
 
         self::$initialized = true;
     }
