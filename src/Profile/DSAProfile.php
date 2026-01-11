@@ -76,7 +76,7 @@ final class DSAProfile extends AbstractCalendarProfile
     /**
      * @inheritDoc
      */
-    public function getCopyrightNotice(): ?string
+    public function getCopyrightNotice(): string
     {
         return $this->getUlissesSpieleCopyright('Das Schwarze Auge (The Dark Eye)', 'Das Schwarze Auge, The Dark Eye, Aventuria');
     }

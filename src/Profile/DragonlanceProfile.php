@@ -89,7 +89,7 @@ final class DragonlanceProfile extends AbstractCalendarProfile
     /**
      * @inheritDoc
      */
-    public function getCopyrightNotice(): ?string
+    public function getCopyrightNotice(): string
     {
         return $this->getWizardsOfTheCoastCopyright('Dragonlance', 'Dragonlance, Krynn');
     }

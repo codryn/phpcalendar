@@ -82,7 +82,7 @@ final class GolarionProfile extends AbstractCalendarProfile
     /**
      * @inheritDoc
      */
-    public function getCopyrightNotice(): ?string
+    public function getCopyrightNotice(): string
     {
         return $this->getPaizoCopyright('Golarion', 'Pathfinder, Golarion');
     }

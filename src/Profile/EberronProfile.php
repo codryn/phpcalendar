@@ -68,7 +68,7 @@ final class EberronProfile extends AbstractCalendarProfile
     /**
      * @inheritDoc
      */
-    public function getCopyrightNotice(): ?string
+    public function getCopyrightNotice(): string
     {
         return $this->getWizardsOfTheCoastCopyright('Eberron', 'Eberron');
     }

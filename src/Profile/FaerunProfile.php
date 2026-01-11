@@ -100,7 +100,7 @@ final class FaerunProfile extends AbstractCalendarProfile
     /**
      * @inheritDoc
      */
-    public function getCopyrightNotice(): ?string
+    public function getCopyrightNotice(): string
     {
         return $this->getWizardsOfTheCoastCopyright('Forgotten Realms', 'Forgotten Realms');
     }
