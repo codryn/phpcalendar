@@ -1,7 +1,8 @@
-# PHPCalendar
+# PHP Calendar
 
+[![PHP Version](https://img.shields.io/badge/PHP-8.1--8.5-blue.svg)](https://www.php.net/)
+[![PHPStan Level 10](https://img.shields.io/badge/PHPStan-level%2010-brightgreen.svg)](https://phpstan.org/)
 [![CI](https://github.com/codryn/phpcalendar/workflows/CI/badge.svg)](https://github.com/codryn/phpcalendar/actions)
-[![PHPStan Level 9](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg)](https://phpstan.org/)
 [![Latest Stable Version](https://poser.pugx.org/codryn/phpcalendar/v/stable)](https://packagist.org/packages/codryn/phpcalendar)
 [![License](https://poser.pugx.org/codryn/phpcalendar/license)](https://packagist.org/packages/codryn/phpcalendar)
 

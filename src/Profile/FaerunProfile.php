@@ -100,4 +100,38 @@ final class FaerunProfile extends AbstractCalendarProfile
             'description' => 'Harptos Calendar with 12 months of 30 days plus annual festivals',
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getNamelessDays(): array
+    {
+        return [
+            [
+                'position' => 1, // After Hammer
+                'names' => [1 => 'Midwinter'],
+                'leap' => false,
+            ],
+            [
+                'position' => 4, // After Tarsakh
+                'names' => [1 => 'Greengrass'],
+                'leap' => false,
+            ],
+            [
+                'position' => 7, // After Flamerule
+                'names' => [1 => 'Midsummer'],
+                'leap' => true, // Shieldmeet follows Midsummer in leap years
+            ],
+            [
+                'position' => 9, // After Eleint
+                'names' => [1 => 'Highharvestide'],
+                'leap' => false,
+            ],
+            [
+                'position' => 11, // After Uktar
+                'names' => [1 => 'Feast of the Moon'],
+                'leap' => false,
+            ],
+        ];
+    }
 }

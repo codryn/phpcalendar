@@ -204,6 +204,84 @@ formatPatterns: ['F d, Y', 'd/m/Y', 'Y-m-d H:i:s']
 formatPatterns: ['d M Y', 'j F Y', 'Y.m.d']
 ```
 
+### `namelessDays` (array) [Optional]
+
+Configuration for nameless days (intercalary days) that exist outside the regular month structure.
+
+**Requirements:**
+- Array of groups, each with:
+  - `position` (int): After which month the nameless days occur (0 = start of year)
+  - `names` (array<int, string>): Names of the nameless days (1-indexed)
+  - `leap` (bool): Whether an extra nameless day is added in leap years
+
+**Default:** `[]` (no nameless days)
+
+**Use Cases:**
+- Fantasy calendar festivals (e.g., Faerûn's Harptos calendar)
+- Historical calendars with intercalary days
+- Custom calendars that need days outside the month structure
+
+**Examples:**
+
+**5 nameless days at year end:**
+```php
+namelessDays: [
+    [
+        'position' => 12,  // After the 12th month
+        'names' => [
+            1 => 'First Nameless Day',
+            2 => 'Second Nameless Day',
+            3 => 'Third Nameless Day',
+            4 => 'Fourth Nameless Day',
+            5 => 'Fifth Nameless Day',
+        ],
+        'leap' => false,  // No extra day in leap years
+    ],
+]
+```
+
+**Multiple festival periods:**
+```php
+namelessDays: [
+    [
+        'position' => 1,  // After month 1
+        'names' => [1 => 'Midwinter'],
+        'leap' => false,
+    ],
+    [
+        'position' => 7,  // After month 7
+        'names' => [1 => 'Midsummer'],
+        'leap' => true,  // Add Shieldmeet in leap years
+    ],
+    [
+        'position' => 12,  // After month 12
+        'names' => [1 => 'Year End Festival'],
+        'leap' => false,
+    ],
+]
+```
+
+**Nameless days with custom names:**
+```php
+namelessDays: [
+    [
+        'position' => 6,
+        'names' => [
+            1 => 'Festival of Light',
+            2 => 'Day of Remembrance',
+            3 => 'Celebration Day',
+        ],
+        'leap' => false,
+    ],
+]
+```
+
+**How nameless days work:**
+- Nameless days are automatically included in year length calculations
+- Date arithmetic (adding/subtracting days) accounts for nameless days
+- When calculating differences between dates, nameless days are counted
+- Nameless days exist between months but don't belong to any specific month
+
 ## Complete Examples
 
 ### Example 1: Martian Calendar
@@ -328,7 +406,76 @@ $date = $eldorianCalendar->parse('15 Sunmoon 723 AE');
 echo $eldorianCalendar->format($date, 'j F, Y'); // 15 Sunmoon, 723
 ```
 
-### Example 4: Decimal Calendar
+### Example 4: Calendar with Nameless Days
+
+A fantasy calendar with nameless days (intercalary days) between months.
+
+```php
+$config = new CalendarConfiguration(
+    name: 'harpthos-inspired',
+    displayName: 'Harpthos-Inspired Fantasy Calendar',
+    monthNames: [
+        1 => 'Deepwinter',
+        2 => 'Latewinter',
+        3 => 'Ches',
+        4 => 'Tarsakh',
+        5 => 'Mirtul',
+        6 => 'Kythorn',
+        7 => 'Flamerule',
+        8 => 'Eleasis',
+        9 => 'Eleint',
+        10 => 'Marpenoth',
+        11 => 'Uktar',
+        12 => 'Nightal'
+    ],
+    daysPerMonth: [
+        1 => 30, 2 => 30, 3 => 30, 4 => 30,
+        5 => 30, 6 => 30, 7 => 30, 8 => 30,
+        9 => 30, 10 => 30, 11 => 30, 12 => 30
+    ],
+    leapYearRule: fn(int $year) => $year % 4 === 0,
+    epochNotation: ['before' => 'Before DR', 'after' => 'DR'],
+    formatPatterns: ['j F Y \D\R'],
+    namelessDays: [
+        [
+            'position' => 1,  // After Deepwinter
+            'names' => [1 => 'Midwinter'],
+            'leap' => false,
+        ],
+        [
+            'position' => 4,  // After Tarsakh
+            'names' => [1 => 'Greengrass'],
+            'leap' => false,
+        ],
+        [
+            'position' => 7,  // After Flamerule
+            'names' => [1 => 'Midsummer'],
+            'leap' => true,  // Shieldmeet in leap years
+        ],
+        [
+            'position' => 9,  // After Eleint
+            'names' => [1 => 'Highharvestide'],
+            'leap' => false,
+        ],
+        [
+            'position' => 11,  // After Uktar
+            'names' => [1 => 'Feast of the Moon'],
+            'leap' => false,
+        ],
+    ]
+);
+
+$calendar = Calendar::fromConfiguration($config);
+
+// A year has 360 days in months + 5 festivals = 365 days (366 in leap years)
+$date1 = $calendar->parse('1 Deepwinter 1492 DR');
+$date2 = $calendar->parse('1 Deepwinter 1493 DR');
+$span = $calendar->diff($date1, $date2);
+
+echo $span->getTotalDays(); // 366 (leap year includes Shieldmeet)
+```
+
+### Example 5: Decimal Calendar
 
 A calendar based on decimal system (10 months, 10-day weeks).
 

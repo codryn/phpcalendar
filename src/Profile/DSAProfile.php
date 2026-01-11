@@ -76,4 +76,24 @@ final class DSAProfile extends AbstractCalendarProfile
             'description' => 'Bosparans Fall calendar with 12 months of 30 days plus 5 nameless days',
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getNamelessDays(): array
+    {
+        return [
+            [
+                'position' => 12, // After the 12th month
+                'names' => [
+                    1 => 'First Nameless Day',
+                    2 => 'Second Nameless Day',
+                    3 => 'Third Nameless Day',
+                    4 => 'Fourth Nameless Day',
+                    5 => 'Fifth Nameless Day',
+                ],
+                'leap' => false, // No extra leap day
+            ],
+        ];
+    }
 }

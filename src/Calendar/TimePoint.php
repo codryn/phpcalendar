@@ -145,27 +145,18 @@ final class TimePoint
      */
     private function toSeconds(): int
     {
-        $days = 0;
+        // Use the calendar profile's dateToSeconds method which handles nameless days
+        $totalSeconds = $this->calendar->dateToSeconds(
+            $this->year,
+            $this->month,
+            $this->day,
+            $this->hour,
+            $this->minute,
+            $this->second,
+            $this->microsecond,
+        );
 
-        // Add days for years
-        for ($y = 1; $y < $this->year; $y++) {
-            $days += $this->calendar->isLeapYear($y) ? 366 : 365;
-        }
-
-        // Add days for months
-        for ($m = 1; $m < $this->month; $m++) {
-            $days += $this->calendar->getDaysInMonth($m, $this->year);
-        }
-
-        // Add days
-        $days += $this->day - 1;
-
-        $seconds = $days * 86400;
-        $seconds += $this->hour * 3600;
-        $seconds += $this->minute * 60;
-        $seconds += $this->second;
-
-        return $seconds;
+        return (int) $totalSeconds;
     }
 
     /**
@@ -189,39 +180,19 @@ final class TimePoint
         $minute = \intdiv($remainingSeconds, 60);
         $second = $remainingSeconds % 60;
 
-        // Convert days to year/month/day
-        $year = 1;
-        $month = 1;
-        $day = 1;
+        // Use the calendar profile's secondsToDate method which handles nameless days
+        $dateComponents = $calendar->secondsToDate((float) $totalSeconds);
 
-        // Find the year
-        while ($days > 0) {
-            $daysInYear = $calendar->isLeapYear($year) ? 366 : 365;
-
-            if ($days >= $daysInYear) {
-                $days -= $daysInYear;
-                $year++;
-            } else {
-                break;
-            }
-        }
-
-        // Find the month
-        while ($days > 0) {
-            $daysInMonth = $calendar->getDaysInMonth($month, $year);
-
-            if ($days >= $daysInMonth) {
-                $days -= $daysInMonth;
-                $month++;
-            } else {
-                break;
-            }
-        }
-
-        // Remaining days
-        $day += $days;
-
-        return new self($calendar, $year, $month, $day, $hour, $minute, $second, $microseconds);
+        return new self(
+            $calendar,
+            $dateComponents['year'],
+            $dateComponents['month'],
+            $dateComponents['day'],
+            $hour,
+            $minute,
+            $second,
+            $microseconds,
+        );
     }
 
     /**
