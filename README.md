@@ -13,6 +13,7 @@
 ## Features
 
 - **🗓️ Built-in Calendar Profiles**: Gregorian + fantasy RPG calendars (Faerûn, Golarion, DSA, Eberron, Dragonlance, Greyhawk, ...)
+- **🔄 Calendar Mapping**: Convert dates between different calendar systems with correlation dates and optional valid ranges
 - **🌍 Internationalization**: Support for different languages (English, German, French, Spanish, Italian, ...) for month names, epochs, and calendar names
 - **📅 Flexible Date Parsing**: Parse dates from natural language and various formats
 - **🎨 Customizable Formatting**: Format dates with custom patterns
@@ -59,6 +60,41 @@ $start = $calendar->parse('2024-01-01');
 $end = $calendar->parse('2024-12-31');
 $span = $calendar->diff($start, $end);
 echo $span->getTotalDays(); // 365
+```
+
+### Calendar Mapping and Conversion
+
+Convert dates between different calendar systems:
+
+```php
+use Codryn\PHPCalendar\Calendar\CalendarMapping;
+use Codryn\PHPCalendar\Calendar\CalendarMappingConfiguration;
+use Codryn\PHPCalendar\Calendar\TimePoint;
+
+// Setup calendars
+$gregorian = Calendar::fromProfile('gregorian');
+$faerun = Calendar::fromProfile('faerun');
+
+// Define correlation: Jan 1, 2024 = 1 Hammer 1492 DR
+$config = new CalendarMappingConfiguration(
+    sourceCalendarName: 'gregorian',
+    targetCalendarName: 'faerun',
+    correlationDate: [
+        'source' => ['year' => 2024, 'month' => 1, 'day' => 1],
+        'target' => ['year' => 1492, 'month' => 1, 'day' => 1],
+    ]
+);
+
+$mapping = new CalendarMapping($config, $gregorian, $faerun);
+
+// Convert dates between calendars
+$gregorianDate = new TimePoint($gregorian, 2024, 12, 25);
+$faerunDate = $mapping->convert($gregorianDate);
+echo $faerun->format($faerunDate); // Nightal 24, 1492
+
+// Convert back
+$backToGregorian = $mapping->reverseConvert($faerunDate);
+echo $gregorian->format($backToGregorian); // December 25, 2024
 ```
 
 ## Internationalization
@@ -337,6 +373,7 @@ Comprehensive documentation is available:
 - **[API Documentation](docs/API.md)** - Complete class and method reference
 - **[Usage Guide](docs/USAGE.md)** - Common patterns and examples
 - **[Calendar Profiles](docs/PROFILES.md)** - Details on all 7 built-in profiles
+- **[Calendar Mapping](docs/CALENDAR_MAPPING.md)** - Convert dates between calendar systems
 - **[Custom Calendars](docs/CUSTOM_CALENDARS.md)** - Guide to creating custom calendars
 - **[Contributing Guide](CONTRIBUTING.md)** - Development workflow and standards
 
