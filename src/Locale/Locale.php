@@ -10,9 +10,13 @@ namespace Codryn\PHPCalendar\Locale;
 final class Locale
 {
     public const EN_US = 'en-us';
+
     public const DE = 'de';
+
     public const FR = 'fr';
+
     public const ES = 'es';
+
     public const IT = 'it';
 
     public const DEFAULT_LOCALE = self::EN_US;
