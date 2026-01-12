@@ -47,6 +47,7 @@
         "analyse": "phpstan analyse -c phpstan.neon",
         "fix-line-endings": "./scripts/fix-line-endings.sh",
         "verify-strict-types": "./scripts/verify-strict-types.sh",
+        "run-examples": "./scripts/run-examples.sh",
         "ci": [
             "@fix-line-endings",
             "@test-coverage-html",

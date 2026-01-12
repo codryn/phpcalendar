@@ -44,7 +44,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
     
     - name: Make scripts executable
-      run: chmod +x scripts/verify-strict-types.sh
+      run: chmod +x scripts/verify-strict-types.sh && chmod +x scripts/run-examples.sh
  
     - name: Run PHPUnit tests
       run: composer test
@@ -59,6 +59,9 @@ jobs:
       with:
         files: ./coverage/clover.xml
         fail_ci_if_error: false
+
+    - name: Run example scripts
+      run: composer run-examples
 
   analyse:
     name: Static Analysis
@@ -78,7 +81,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Make scripts executable
-      run: chmod +x scripts/verify-strict-types.sh
+      run: chmod +x scripts/verify-strict-types.sh && chmod +x scripts/run-examples.sh
 
     - name: Check code style (PSR-12)
       run: composer cs-check
