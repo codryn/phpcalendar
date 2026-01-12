@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing yet.
 
-## [1.0.0] - 2025-01-11
+## [0.1.0] - 2025-01-12
 
-Initial public release of PHPCalendar - a type-safe, configurable calendar system for PHP.
+Initial test release of PHPCalendar - a type-safe, configurable calendar system for PHP.
 
 ### Added
 
