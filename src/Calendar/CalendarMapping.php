@@ -174,7 +174,7 @@ final class CalendarMapping
             $diff = $this->sourceCalendar->diff($min, $date);
             if ($diff->getTotalSeconds() < 0) {
                 throw new InvalidDateException(
-                    "Date is before minimum valid date for conversion",
+                    'Date is before minimum valid date for conversion',
                 );
             }
         }
@@ -191,7 +191,7 @@ final class CalendarMapping
             $diff = $this->sourceCalendar->diff($date, $max);
             if ($diff->getTotalSeconds() < 0) {
                 throw new InvalidDateException(
-                    "Date is after maximum valid date for conversion",
+                    'Date is after maximum valid date for conversion',
                 );
             }
         }
