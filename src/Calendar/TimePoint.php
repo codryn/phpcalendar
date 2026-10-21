@@ -217,12 +217,22 @@ final class TimePoint
             );
         }
 
-        // Validate day
+        // Validate day. Nameless days are encoded as overflow days of
+        // the preceding month, without changing getDaysInMonth().
         $daysInMonth = $calendar->getDaysInMonth($month, $year);
+        $extraDays = 0;
+        foreach ($calendar->getProfile()->getNamelessDays() as $group) {
+            if ($group['position'] === $month) {
+                $extraDays += \count($group['names']);
+                if ($group['leap'] && $calendar->isLeapYear($year)) {
+                    $extraDays++;
+                }
+            }
+        }
 
-        if ($day < 1 || $day > $daysInMonth) {
+        if ($day < 1 || $day > $daysInMonth + $extraDays) {
             throw new InvalidDateException(
-                "Invalid day: {$day}. Must be between 1 and {$daysInMonth} for month {$month}",
+                "Invalid day: {$day}. Must be between 1 and " . ($daysInMonth + $extraDays) . " for month {$month}",
             );
         }
 

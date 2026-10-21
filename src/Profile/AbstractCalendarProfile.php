@@ -195,15 +195,14 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                     }
 
                     if ($days < $namelessCount) {
-                        // We're in a nameless day period.
-                        // Nameless days don't belong to any specific month, so we represent them
-                        // as being in the previous month's last day for display purposes.
-                        // The important thing is that the calculations account for these days.
+                        // Represent each nameless day distinctly as an overflow day
+                        // of the preceding month (e.g. 31 Hammer = Midwinter).
+                        // This keeps dateToSeconds() and secondsToDate() reversible.
                         $month = $m - 1;
                         if ($month < 1) {
                             $month = $monthCount;
                         }
-                        $day = $this->getDaysInMonth($month, $year);
+                        $day = $this->getDaysInMonth($month, $year) + $days + 1;
 
                         return [
                             'year' => $year,
@@ -241,14 +240,9 @@ abstract class AbstractCalendarProfile implements CalendarProfileInterface
                     }
 
                     if ($days < $namelessCount) {
-                        // We're in the nameless days at the end of the year.
-                        // Nameless days don't belong to any specific month, so we represent them
-                        // as being in the last month's last day for display purposes.
-                        // This is acceptable because nameless days are primarily used for
-                        // calculation purposes (year length, date differences) rather than
-                        // for specific date representation.
+                        // Preserve the identity of each end-of-year nameless day.
                         $month = $monthCount;
-                        $day = $this->getDaysInMonth($month, $year);
+                        $day = $this->getDaysInMonth($month, $year) + $days + 1;
 
                         return [
                             'year' => $year,

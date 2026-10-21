@@ -94,7 +94,15 @@ final class FaerunProfile extends AbstractCalendarProfile
      */
     public function getNamelessDays(): array
     {
-        return FaerunTranslations::getNamelessDays($this->locale);
+        $groups = FaerunTranslations::getNamelessDays($this->locale);
+        foreach ($groups as &$group) {
+            if ($group['leap']) {
+                $group['leapName'] = 'Shieldmeet';
+            }
+        }
+        unset($group);
+
+        return $groups;
     }
 
     /**

@@ -109,15 +109,12 @@ interface CalendarProfileInterface
      * Returns an array of nameless days with their position and names.
      * Position indicates after which month the nameless days occur (0 = start of year).
      *
-     * Note: Nameless days are primarily used for calculation purposes (year length,
-     * date differences) and are not represented as distinct date objects. When converting
-     * timestamps to dates, any time falling on a nameless day will be represented as
-     * the last day of the preceding month for display purposes. This ensures that:
-     * - Year lengths are correctly calculated including nameless days
-     * - Date arithmetic properly accounts for nameless days
-     * - All calculations remain accurate while maintaining a simple month/day representation
+     * Nameless days after a month are represented by overflow days of that month
+     * (e.g. 31 Hammer for Midwinter). These values preserve arithmetic and mappings;
+     * formatters can display their festival names. Profiles with position=0
+     * (nameless days before the first month) are not covered by this representation.
      *
-     * @return array<int, array{position: int, names: array<int, string>, leap: bool}> Nameless days groups
+     * @return array<int, array{position: int, names: array<int, string>, leap: bool, leapName?: string}> Nameless days groups
      */
     public function getNamelessDays(): array;
 

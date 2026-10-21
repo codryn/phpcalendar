@@ -30,22 +30,46 @@ final class DateFormatter
         $monthNames = $calendar->getMonthNames();
         $monthName = $monthNames[$point->getMonth()];
 
-        // Direct replacement with proper values
-        // Order matters! Replace longer patterns before shorter ones to avoid conflicts
+        // Intercalary days retain an unambiguous numeric representation
+        // (e.g. 1492-07-32 = Shieldmeet) and also have a display name.
+        $festivalName = null;
+        $regularDays = $calendar->getDaysInMonth($point->getMonth(), $point->getYear());
+        if ($point->getDay() > $regularDays) {
+            $ordinal = $point->getDay() - $regularDays;
+            foreach ($calendar->getProfile()->getNamelessDays() as $group) {
+                if ($group['position'] !== $point->getMonth()) {
+                    continue;
+                }
+                $festivalName = $group['names'][$ordinal] ?? null;
+                if ($festivalName === null && $group['leap'] && $calendar->isLeapYear($point->getYear())
+                    && $ordinal === \count($group['names']) + 1) {
+                    $festivalName = $group['leapName'] ?? 'Leap Day';
+                }
+                break;
+            }
+        }
+        $namedFestival = $festivalName !== null && \str_contains($pattern, 'F');
+
+        // Named patterns show the festival name without a spurious day number.
+        // Numeric patterns continue to expose the reversible overflow date.
         $replacements = [
             'Y' => (string) $point->getYear(),
             'y' => \substr((string) $point->getYear(), -2),
-            'F' => $monthName,
-            'm' => \str_pad((string) $point->getMonth(), 2, '0', STR_PAD_LEFT),
-            'n' => (string) $point->getMonth(),
-            'd' => \str_pad((string) $point->getDay(), 2, '0', STR_PAD_LEFT),
-            'j' => (string) $point->getDay(),
+            'F' => $namedFestival ? $festivalName : $monthName,
+            'm' => $namedFestival ? '' : \str_pad((string) $point->getMonth(), 2, '0', STR_PAD_LEFT),
+            'n' => $namedFestival ? '' : (string) $point->getMonth(),
+            'd' => $namedFestival ? '' : \str_pad((string) $point->getDay(), 2, '0', STR_PAD_LEFT),
+            'j' => $namedFestival ? '' : (string) $point->getDay(),
             'H' => \str_pad((string) $point->getHour(), 2, '0', STR_PAD_LEFT),
             'i' => \str_pad((string) $point->getMinute(), 2, '0', STR_PAD_LEFT),
             's' => \str_pad((string) $point->getSecond(), 2, '0', STR_PAD_LEFT),
         ];
-
         // Use strtr for safe simultaneous replacement
-        return \strtr($pattern, $replacements);
+        $formatted = \strtr($pattern, $replacements);
+        if ($namedFestival) {
+            $formatted = \trim(\preg_replace('/\s+([,.])/', '$1', $formatted) ?? $formatted);
+        }
+
+        return $formatted;
     }
 }
